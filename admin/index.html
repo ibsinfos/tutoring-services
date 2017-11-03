@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tutoringApp" class="{{ htmllayout }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="../assets/front/img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <!-- <base href="/"> -->
+    <title>Tutoring Services</title>
+
+    <!-- gulp for vendor css files -->
+    <link rel="stylesheet" type="text/css" href="dist/admin_vendor.css">
+
+    <!-- gulp for vendor js files -->
+    <script type="text/javascript" src="dist/admin_vendor.js"></script>
+    <script type="text/javascript" src="../vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="../vendor/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+    <!-- gulp for app js files -->
+    <script type="text/javascript" src="dist/admin_app.js"></script>
+
+</head>
+
+<body class="{{ bodylayout }}">
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+    <div class="ui-view"></div>
+</body>
+
+</html>

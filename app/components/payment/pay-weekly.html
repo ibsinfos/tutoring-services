@@ -1,0 +1,105 @@
+<main class="layout_table" data-ng-init="payWeekly.checkProjectAndUserSlug();">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+                <h2>You have chosen to release payments in <strong>weekly instalments</strong></h2>
+                <div ng-if="!payWeekly.invalidData && !payWeekly.startWeeklyPayment">
+                    <p>Please use the form below to calculate the pricing structure</p>
+                    <form id="project_cost_calculator" name="project_cost_calculator" class="panel panel-default" novalidate>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Hourly Rate (USD)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+                                        <input id="hourly_rate" name="hourly_rate" ng-model="payWeekly.projectCost.hourly_rate" type="text" class="form-control inline_input"
+                                            placeholder="type a number" ng-blur="payWeekly.doMath_weekly_instalments();" required
+                                        />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.hourly_rate.$dirty && project_cost_calculator.hourly_rate.$invalid && project_cost_calculator.hourly_rate.$error.required">Agreed Project Cost is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Total Project hours</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-hourglass" aria-hidden="true"></i></div>
+                                        <input id="total_project_hours" name="total_project_hours" ng-model="payWeekly.projectCost.total_project_hours" type="text"
+                                            class="form-control inline_input" placeholder="type a number" ng-blur="payWeekly.doMath_weekly_instalments();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.total_project_hours.$dirty && project_cost_calculator.total_project_hours.$invalid && project_cost_calculator.total_project_hours.$error.required">Total Project Hours is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Max hours per week</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-hourglass-half" aria-hidden="true"></i></div>
+                                        <input id="max_hours_per_week" name="max_hours_per_week" ng-model="payWeekly.projectCost.max_hours_per_week" type="text"
+                                            class="form-control inline_input" placeholder="type a number" ng-blur="payWeekly.doMath_weekly_instalments();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.max_hours_per_week.$dirty && project_cost_calculator.max_hours_per_week.$invalid && project_cost_calculator.max_hours_per_week.$error.required">Max hours per week is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <div class='input-group '>
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                        <input type="text" class="form-control inline_input" id="start_date" name="start_date" ng-model="payWeekly.projectCost.start_date"
+                                            placeholder="pick a date" uib-datepicker-popup="EEEE, d MMM, yy" is-open="payWeekly.start_date.opened"
+                                            datepicker-options="startDateOptions" ng-required="true" close-text="Close" ng-click="payWeekly.start_date_popup()"
+                                            ng-change="payWeekly.selectedWeeklyStartDate();" required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.start_date.$dirty && project_cost_calculator.start_date.$invalid && project_cost_calculator.start_date.$error.required">Start Date is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>End date</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                        <input class="form-control inline_input" id="end_date" name="end_date" ng-model="payWeekly.projectCost.end_date" uib-datepicker-popup="EEEE, d MMM, yy"
+                                            is-open="payWeekly.end_date.opened" datepicker-options="endDateOptions" ng-required="true"
+                                            close-text="Close" ng-click="payWeekly.end_date_popup()" ng-change="payWeekly.selectedWeeklyEndDate();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.end_date.$dirty && project_cost_calculator.end_date.$invalid && project_cost_calculator.end_date.$error.required">End Date is required.</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>Agreement Overview</label>
+                                <textarea id="project_agreement" name="project_agreement" class="form-control project_agreement" ng-model="payWeekly.projectCost.project_agreement"
+                                    placeholder="Please type your general agreement here" required></textarea>
+                                <span style="color:red" ng-show="project_cost_calculator.project_agreement.$dirty && project_cost_calculator.project_agreement.$invalid && project_cost_calculator.project_agreement.$error.required">Agreement Overview is required.</span>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="results">
+                                    <h3>Summary</h3>
+                                    <div class="result_row result_row_small">Total Project Days: <strong><span id="total_project_days" ng-bind="payWeekly.projectCost.total_project_days">--</span></strong></div>
+                                    <div class="result_row result_row_small"><strong><span id="total_project_weeks_as_integer" ng-bind="payWeekly.projectCost.total_project_weeks_as_integer">--</span></strong>                                        Weekly Installments (USD) of: <strong>$<span id="project_cost_weekly" ng-bind="payWeekly.projectCost.project_cost_weekly">---</span></strong>                                        each</div>
+                                    <div class="result_row result_row_small weekly_instalments_calc" ng-bind-html="payWeekly.projectCost.weekly_instalments_calc"></div>
+                                    <div class="result_row">Total Project Cost (USD): <strong>$<span id="project_cost_total" ng-bind="payWeekly.projectCost.project_cost_total">---</span></strong></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ctions">
+                                <p class="message_framed"><strong>Remember:</strong> Your payment will be received by us and not by the freelancer.
+                                    We are only going to release payment instalments when you are happy and tell us to do
+                                    so. Once the payment transaction completes successfully, the freelancer will be officially
+                                    hired!
+                                </p>
+                                <label><input type="checkbox" ng-model="payWeekly.projectCost.acceptTerms" id="acceptTerms" name="acceptTerms" required /> I accept the <a href="/terms" target="blank">Terms & Conditions</a></label>
+                                <div style="color:red" ng-show="project_cost_calculator.acceptTerms.$dirty && project_cost_calculator.acceptTerms.$invalid">
+                                    <span ng-show="project_cost_calculator.acceptTerms.$error.required">Please accept Terms and Conditions.</span>
+                                </div>
+                                <button type="button" class="btn btn-primary" ng-click="payWeekly.calc_end_date_weekly_instalments();" ng-disabled="project_cost_calculator.$invalid">Proceed to payment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div ng-if="payWeekly.invalidData">
+                    <div class="alert alert-danger">
+                        {{payWeekly.invalidDataMessage}}
+                    </div>
+                </div>
+                <div ng-if="payWeekly.startWeeklyPayment" class="form-group text-center">
+                    <paypal-button env="opts.env" style="opts.style" client="opts.client" payment="opts.payment" commit="opts.commit" on-authorize="opts.onAuthorize"></paypal-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

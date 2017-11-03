@@ -1,0 +1,56 @@
+<!-- Content Header (Page header) -->
+<style>
+    .center-btn {
+        width: 150px;
+        margin: auto;
+    }
+</style>
+
+<section class="content-header">
+    <h1> Currency </h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="administrator.skills"><i class="fa fa-dashboard"></i> Currency </a></li>
+        <li class="active"> Currency</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change Active Currency</h3>
+                </div>
+                <!-- /.box-header -->
+                <form class="form-horizontal" name="currencyForm" novalidate angular-validator
+                    angular-validator-submit='currency.changeCurrency()'>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Active Currency</label>
+                            <div class="col-sm-8">
+                                <select name="activeCurrency" class="form-control" ng-model="currency.currencyForm.activeCurrency">
+                                    <option ng-repeat="item in currency.currencyList" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="center-btn">
+                            <button type="submit" class="btn btn-success" ng-disabled="skillForm.$invalid">Submit</button>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

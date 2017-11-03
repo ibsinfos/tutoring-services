@@ -1,0 +1,112 @@
+<style>
+    .jk-rating-stars-container .button .material-icons {
+        font-size: 20px !important;
+    }
+    .jk-rating-stars-container .star-button {
+            text-shadow: 0.06em 0.04em #f5f5f5 !important;
+    }
+</style>
+<div class="modal-body">
+    <div class="active_frame">
+        <div class="close_black" ng-click="addReviewRatingModal.close()"></div>
+        <h2>Give a review for project "{{rating.projectName}}"</h2>
+        <p>You can only review once per project. You will have 5 days to change your review before it becomes permanent.</p>
+        <form novalidate angular-validator angular-validator-submit='rating.submitReview()' name="ratingForm">
+            <div class="form-group">
+                <label>Title</label>
+                <input class="form-control" type="text" name="Title" ng-model="rating.ratingForm.title" validate-on='dirty' required=""/>
+            </div>
+            <div class="form-group">
+                <label>Full Review</label>
+                <textarea class="form-control" name="review" ng-model="rating.ratingForm.fullReview"></textarea>
+            </div>
+            <div class="form-group">
+                <table class="table table-striped">
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Job Quality</td>
+                        <td>
+                            <input type="radio" name="jobquality" value="1" ng-model="rating.ratingForm.job_qaulity"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="jobquality" value="2" ng-model="rating.ratingForm.job_qaulity"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="jobquality" value="3" ng-model="rating.ratingForm.job_qaulity"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="jobquality" value="4" ng-model="rating.ratingForm.job_qaulity"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="jobquality" value="5" ng-model="rating.ratingForm.job_qaulity"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Communication</td>
+                        <td>
+                            <input type="radio" name="communication" value="1" ng-model="rating.ratingForm.communication"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="communication" value="2" ng-model="rating.ratingForm.communication"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="communication" value="3" ng-model="rating.ratingForm.communication"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="communication" value="4" ng-model="rating.ratingForm.communication"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="communication" value="5" ng-model="rating.ratingForm.communication"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Avalaibility</td>
+                        <td>
+                            <input type="radio" name="avalaibility" value="1" ng-model="rating.ratingForm.avalaibility"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="avalaibility" value="2" ng-model="rating.ratingForm.avalaibility"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="avalaibility" value="3" ng-model="rating.ratingForm.avalaibility"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="avalaibility" value="4" ng-model="rating.ratingForm.avalaibility"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="avalaibility" value="5" ng-model="rating.ratingForm.avalaibility"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Time Mamangement</td>
+                        <td>
+                            <input type="radio" name="time_management" value="1" ng-model="rating.ratingForm.time_management"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="time_management" value="2" ng-model="rating.ratingForm.time_management"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="time_management" value="3" ng-model="rating.ratingForm.time_management"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="time_management" value="4" ng-model="rating.ratingForm.time_management"/>
+                        </td>
+                        <td>
+                            <input type="radio" name="time_management" value="5" ng-model="rating.ratingForm.time_management"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="actions">
+                <button type="submit" class="btn btn-primary" name="submit">submit your review</button>
+            </div>
+        </form>
+    </div>
+</div>

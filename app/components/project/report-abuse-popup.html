@@ -1,0 +1,35 @@
+<div class="modal-body">
+    <div class="active_frame report-abuse-popup">
+        <div class="close_black" ng-click="addReportAbuseModal.close().fadeOut(300);"></div>
+        <div ng-if="!project.success">
+            <h2>Violation Report</h2>
+            <p>This form is used to report violations of the Freelancer. Terms and Conditions.</p>
+            <p>Please fill in the following fields.</p>
+            <form name="violationReportForm" angular-validator angular-validator-submit='project.reportAbuse(project.reportInfo)' novalidate>
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input class="form-control" type="text" name="project_title" placeholder="e.g. Build a Website" ng-model="project.reportInfo.project_name" required-message="'Project name is required'"
+                        validate-on="dirty" autocomplete="off" required readonly/>
+                </div>
+                <div class="form-group">
+                    <label>Reason</label>
+                    <select class="form-control" name="reason_id" ng-model="project.reportInfo.reason">
+                        <option value="">Please choose one</option>
+                        <option ng-repeat="item in project.allReasons" value="{{item.id}}">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Detail Violation</label>
+                    <textarea class="form-control" name="comments" placeholder="Comments" rows="3" ng-model="project.reportInfo.comments" required-message="'Comments are required'"
+                        validate-on="dirty" autocomplete="off" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit Report</button>
+            </form>
+        </div>
+        <div class="thankyou-report" ng-if="project.success">
+            <h2>Violation Report Sent</h2>
+            <h4>Thank you!</h4>
+            <p>We will verify this information and act according to our Terms Of Service</p>
+        </div>
+    </div>
+</div>

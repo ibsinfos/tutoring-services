@@ -1,0 +1,29 @@
+<div class="modal-body">
+    <div class="active_frame">
+        <div class="close_black" ng-click="addFieldModal.close().fadeOut(300);"></div>
+        <h2><span class="glyphicon glyphicon-piggy-bank"></span> Your bank details</h2>
+        <form angular-validator angular-validator-submit='freelancer.updateBankDetails(freelancer.bankInfo)' novalidate>
+            <div class="form-group">
+                <label>Your bank's name</label>
+                <input class="form-control" placeholder="Your bank's name" ng-model="freelancer.bankInfo.bank_name" required-message="'Your bank\'s name is required'"
+                    validate-on="dirty" autocomplete="off" required />
+            </div>
+            <div class="form-group">
+                <label>Your branch sort code</label>
+                <input class="form-control" placeholder="Your branch sort code" ng-model="freelancer.bankInfo.bank_code" required-message="'Your branch sort code is required'"
+                    validate-on="dirty" autocomplete="off" required />
+            </div>
+            <div class="form-group">
+                <label>Your account number</label>
+                <input class="form-control" placeholder="Your account number" ng-model="freelancer.bankInfo.bank_account_number" required-message="'Your account number is required'"
+                    validate-on="dirty" autocomplete="off" required />
+            </div>
+            <div class="form-group">
+                <label>IBAN</label>
+                <input class="form-control" placeholder="IBAN" ng-model="freelancer.bankInfo.bank_iban" required-message="'IBAN is required'"
+                    validate-on="dirty" autocomplete="off" required />
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Save</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="modal-body">
+    <div class="col-xs-12 col-sm-12 col-md-12 active_frame">
+        <div class="close_black" ng-click="addFileComplaintModel.close()"></div>
+        <h2><span class="glyphicon glyphicon-thumbs-down"></span> File a complaint</h2>
+        <p class="message">Do you have an issue with a project?</p>
+        <form id="fileComplaint" name="fileComplaint" novalidate angular-validator angular-validator-submit='employer.fileComplaint(employer.complaint)'>
+            <div class="form-group">
+                <label>Project reference number </label>
+                <input type="text" class="form-control" ng-model="employer.complaint.reference_number" required-message="'Reference Number is required'"
+                    validate-on="dirty" autocomplete="off" required readonly />
+            </div>
+            <div class="form-group">
+                <label>A few words about the problem </label>
+                <textarea class="form-control" rows="3" ng-model="employer.complaint.message" required-message="'Your message is required'"
+                    validate-on="dirty" autocomplete="off" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">send complaint</button>
+        </form>
+    </div>
+</div>

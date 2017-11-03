@@ -1,0 +1,107 @@
+<!-- Content Header (Page header) -->
+<style>
+    .center-btn {
+        width: 150px;
+        margin: auto;
+    }
+</style>
+<section class="content-header">
+    <h1>{{budget.title}} Budget</h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="administrator.budget"><i class="fa fa-dashboard"></i> Budgets</a></li>
+        <li class="active">{{budget.title}} Budget</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{budget.title}} Budget</h3>
+                    <div class="box-tools pull-right">
+                        <a ui-sref="administrator.budget" class="btn btn-sm btn-info btn-flat pull-left">Back to All Budgets</a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <form class="form-horizontal" name="budgetForm" novalidate angular-validator
+                    angular-validator-submit='budget.saveBudget()'>
+
+                    <div class="box-body">
+                        <input ng-if="budget.editFlag" type="hidden" name="budget_id" ng-model="budget.budgetForm.budgetId">
+                        <input type="hidden" name="curreny_id" ng-model="budget.budgetForm.currencyId">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Currency</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="currency" ng-model="budget.budgetForm.currencyName" validate-on='dirty' readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="name" ng-model="budget.budgetForm.name" placeholder="Enter Budget Name" validate-on='dirty' required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-4">
+                                    <label>&nbsp;
+                                      <input type="radio" name="type" id="type" ng-model="budget.budgetForm.type" value="1">
+                                      Project Basis
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-4">
+                                    <label>&nbsp;
+                                      <input type="radio" name="type" id="type" ng-model="budget.budgetForm.type" value="2">
+                                      Hourly Basis
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Range</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="range_from" ng-model="budget.budgetForm.rangeFrom" placeholder="From" validate-on='dirty' validator = "budget.validateRange(budget.budgetForm.rangeFrom) === true" invalid-message = "budget.validateRange(budget.budgetForm.rangeFrom)">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="range_to" ng-model="budget.budgetForm.rangeTo" placeholder="To" validate-on='dirty' validator = "budget.validateRange(budget.budgetForm.rangeTo) === true" invalid-message = "budget.validateRange(budget.budgetForm.rangeTo)">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="center-btn">
+                            <button type="submit" class="btn btn-success" ng-disabled="budgetForm.$invalid">Submit</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

@@ -1,0 +1,117 @@
+<section class="signup">
+    <form id="msform" name="msform" angular-validator-submit="auth.signUpEmployer(auth.employerInfo)" novalidate angular-validator>
+        <ul id="progressbar">
+            <li class="active">Project Setup</li>
+            <li>Define the Project</li>
+            <li>Personal Details</li>
+        </ul>
+        <fieldset>
+            <h2 class="fs-title">Post your account</h2>
+            <h3 class="fs-subtitle">It's quick and easy</h3>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="Name your Project" name="project_name" ng-model="auth.employerInfo.projectTitle" required-message="'Project Title is required'"
+                    validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <textarea placeholder="Add a Description" name="project_description" ng-model="auth.employerInfo.projectDescription" required-message="'Project Description is required'"
+                    validate-on="dirty" rows="6" required></textarea>
+            </div>
+            <div class="form-group">
+                <p class="formtitle"><span class="glyphicon glyphicon-file"></span> Upload a specification</p>
+                <input type="file" class="form-control" ngf-select="uploadFiles($files, $invalidFiles)" multiple ng-model="picFile" name="file"
+                    ngf-max-size="2MB" ngf-model-invalid="errorFile">
+            </div>
+            <input type="submit" name="next" class="action-button" ng-class="{'next':btnPostProject}" value="Next" data-ng-attr-id="btnPostProject"
+                ng-click="auth.stepPostProject(auth.employerInfo)" />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Define the Project</h2>
+            <h3 class="fs-subtitle">What do you do?</h3>
+            <div class="form-group">
+                <select ng-if='true' class="form-control" name="category" ng-init="auth.getCategories(0);" ng-model="auth.employerInfo.projectCategory"
+                    validate-on='dirty' required="">
+                  <option value="">Please select a category</option>
+                  <option value="{{item.id}}" ng-repeat="item in auth.projectCategories">{{item.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select ng-if='true' class="form-control" name="budget" ng-model="auth.employerInfo.projectBudgetType" validate-on='dirty'
+                    required="" ng-change="auth.getBudgets(auth.employerInfo.projectBudgetType)">
+                    <option value="">Please select budget type</option>
+                    <option value="1">Project Basis</option>
+                    <option value="2">Hourly Basis</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select ng-if='true' class="form-control" name="budget" ng-model="auth.employerInfo.projectBudget" validate-on='dirty' required="">
+                  <option value="">Please select a budget</option>
+                  <option value="{{item.id}}" ng-repeat="item in auth.budgetRange">{{item.range}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select ng-if='true' class="form-control" name="urgency" ng-init="auth.getUrgency();" ng-model="auth.employerInfo.projectUrgency"
+                    validate-on='dirty' required="">
+                    <option value="">Please select urgency</option>
+                    <option value="{{item.id}}" ng-repeat="item in auth.urgencyRange">{{item.range}}</option>
+                </select>
+            </div>
+            <div class="principles_group" id="principles_group">
+                <div data-ng-repeat="(key, choice) in auth.choices">
+                    <select class="principles form-control" name="principles" ng-init="auth.getCategories(key);" ng-model="auth.employerInfo.category[key]"
+                        ng-change="auth.getSkills(auth.employerInfo.category[key], key, oldValue)" ng-options="category as category.name for category in auth.categories[key] track by category.id"
+                        ng-click="oldValue = auth.employerInfo.category[key]" validate-on='dirty' required="">
+                        <option value="">Please pick a principle</option>
+                    </select>
+                    <div class="skills_wrap" ng-if="auth.skills[key].length > 0">
+                        <div id="accounting" class="skills">
+                            <label ng-repeat="skill in auth.skills[key]">
+                                <input type="checkbox" ng-click="auth.getCheckedSkills(auth.employerInfo.category[key].id, skill.id, active)" ng-model="active" value="{{ skill.id }}" /> {{ skill.name }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="addmore_wrap">
+                        <div class="btn btn-danger btn-sm btn-xs" ng-if="!$first" ng-show="$last" ng-click="auth.removePrinciple(key, auth.employerInfo.category[key])">
+                            <span class="glyphicon glyphicon-minus-sign"></span> remove principle
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addmore_wrap">
+                <div class="btn btn-default" ng-disabled="auth.flagAddPrinciple" ng-click="auth.flagAddPrinciple || auth.addPrinciple()"><span class="glyphicon glyphicon-plus-sign"></span> add a different principle</div>
+            </div>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="submit" name="next" class="action-button" ng-class="{'next':btnSkills}" value="Next" ng-click="auth.stepSkills(auth.employerInfo)"
+            />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Personal Details</h2>
+            <h3 class="fs-subtitle">We will never sell it</h3>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="First Name" name="fname" ng-model="auth.employerInfo.fname" required-message="'First Name is required'"
+                    validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="Last Name" name="lname" ng-model="auth.employerInfo.lname" required-message="'Last Name is required'"
+                    validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="email" placeholder="Email" name="email" ng-model="auth.employerInfo.email" invalid-message="'Invalid Email address entered'"
+                    required-message="'Email address is required'" validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="Password" name="password" ng-model="auth.employerInfo.password" validator="auth.passwordValidator(auth.employerInfo.password) === true"
+                    invalid-message="auth.passwordValidator(auth.employerInfo.password)" validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="Confirm Password" name="confirmpassword" ng-model="auth.employerInfo.confirmpassword"
+                    validator="auth.employerInfo.password === auth.employerInfo.confirmpassword" validate-on="dirty" invalid-message="'Both Passwords didn\'t match!'"
+                    required/>
+            </div>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="submit" name="submit" class="action-button" ng-class="{'submit':btnPersonal}" value="Submit" />
+        </fieldset>
+    </form>
+</section>

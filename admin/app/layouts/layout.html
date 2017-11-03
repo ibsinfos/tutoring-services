@@ -1,0 +1,36 @@
+<!-- All Stylesheet -->
+<link rel="stylesheet" href="../vendor/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../vendor/AdminLTE/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="../vendor/AdminLTE/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../assets/admin/css/custom.css">
+
+<!-- All Javascript -->
+<!-- <script type="text/javaScript" src="vendor/AdminLTE/bootstrap/js/bootstrap.min.js"></script> -->
+<script type="text/javaScript" src="../vendor/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script type="text/javaScript" src="../vendor/AdminLTE/dist/js/app.min.js"></script>
+<script type="text/javaScript" src="../vendor/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script type="text/javaScript" src="../vendor/AdminLTE/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+        $(function () {
+                $('body').addClass('sidebar-mini skin-red-light fixed');
+        })
+</script>
+
+<div class="wrapper">
+        <!-- Header Section -->
+        <div ui-view="header"></div>
+
+        <!-- Left and Right Sidebar Sections -->
+        <!-- <div ui-view="sidebarLeft"></div> -->
+        <left-side-bar></left-side-bar>
+        <!-- Content Section -->
+        <div class="content-wrapper">
+                <div ui-view="content"></div>
+        </div>
+
+        <!-- Footer Section -->
+        <div ui-view="footer"></div>
+</div>

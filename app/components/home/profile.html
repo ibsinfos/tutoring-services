@@ -1,0 +1,109 @@
+<section class="content-header">
+    <h1>Profile</h1>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-danger">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="vendor/AdminLTE/dist/img/user2-160x160.jpg" alt="User profile picture">
+                    <h3 class="profile-username text-center">{{user.firstname}} {{user.lastname}}</h3>
+                    <p class="text-muted text-center">{{user.role_name}}</p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Followers</b> <a class="pull-right">1,322</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Following</b> <a class="pull-right">543</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Friends</b> <a class="pull-right">13,287</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a showtab="" href="#basic" data-toggle="tab">Basic Information</a></li>
+                    <li><a showtab="" href="#change-password" data-toggle="tab">Change Password</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="basic">
+                        <form class="form-horizontal" angular-validator-submit="dashboard.updateProfile(user)" name="myForm" novalidate angular-validator>
+                            <div class="form-group">
+                                <label for="firstname" class="col-sm-2 control-label">First Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="First Name" id="firstname" name="firstname" ng-model="user.firstname"
+                                        required-message="'First Name is required'" validate-on="dirty" autocomplete="off" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Last Name" id="lastname" name="lastname" ng-model="user.lastname" required-message="'Last Name is required'"
+                                        validate-on="dirty" autocomplete="off" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="user.email" required-message="'Email is required'"
+                                        validate-on="dirty" required readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Phone" id="phone" name="phone" ng-model="user.phone" required-message="'Contact Number is required'"
+                                        validate-on="dirty" autocomplete="off" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="change-password">
+                        <form class="form-horizontal" angular-validator-submit="dashboard.changePassword(dashboard.changepassword)" name="myForm"
+                            novalidate angular-validator>
+                            <div class="form-group">
+                                <label for="old_password" class="col-sm-2 control-label">Old Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" ng-model="dashboard.changepassword.old_password"
+                                        required-message="'Old Password is required'" validate-on="dirty" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password" class="col-sm-2 control-label">New Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password" ng-model="dashboard.changepassword.new_password"
+                                        validator="dashboard.passwordValidator(dashboard.changepassword.new_password) === true"
+                                        invalid-message="dashboard.passwordValidator(dashboard.changepassword.new_password)"
+                                        validate-on="dirty" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password" class="col-sm-2 control-label">Confirm Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
+                                        ng-model="dashboard.changepassword.confirm_password" validator="dashboard.changepassword.new_password === dashboard.changepassword.confirm_password"
+                                        validate-on="dirty" invalid-message="'Passwords do not match!'" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger">Change Password</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

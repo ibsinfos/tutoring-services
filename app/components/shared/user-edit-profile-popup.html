@@ -1,0 +1,68 @@
+<div class="modal-body">
+    <div class="active_frame settings-popup">
+        <div class="close_black" ng-click="addFieldModal.close().fadeOut(300);"></div>
+        <h2>Settings</h2>
+        <uib-tabset active="activeForm">
+            <uib-tab index="0" heading="Edit Profile">
+                <form angular-validator angular-validator-submit='shared.updateUserDetails(shared.userInfo)' novalidate>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input class="form-control" type="text" placeholder="Jon" ng-model="shared.userInfo.firstname" required-message="'First name is required'"
+                            validate-on="dirty" autocomplete="off" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input class="form-control" type="text" placeholder="Jonasson" ng-model="shared.userInfo.lastname" required-message="'Last name is required'"
+                            validate-on="dirty" autocomplete="off" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="email" placeholder="jon@example.com" ng-model="shared.userInfo.email" required-message="'Email is required'"
+                            validate-on="dirty" autocomplete="off" required readonly/>
+                    </div>
+                    <div class="form-group" ng-if="shared.userInfo.role_id == 3">
+                        <label>Hourly Rate</label>
+                        <input class="form-control" type="text" placeholder="E.g. 8" ng-model="shared.userInfo.hourly_rate" required-message="'Hourly Rate is required'"
+                            validate-on="dirty" autocomplete="off" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Headline</label>
+                        <input class="form-control" type="text" placeholder="Professional Headline - e.g. Graphic Designer" ng-model="shared.userInfo.headline"
+                            required-message="'Professional Headline is required'" validate-on="dirty" autocomplete="off" required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>A bit about yourself </label>
+                        <textarea class="form-control" rows="3" ng-model="shared.userInfo.bio" required-message="'A bit about yourself is required'"
+                            validate-on="dirty" autocomplete="off" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                </form>
+            </uib-tab>
+            <uib-tab index="1" heading="Change Password">
+                <form angular-validator angular-validator-submit='shared.changePassword(shared.changepassword);' name="changePasswordForm"
+                    novalidate>
+                    <div class="form-group">
+                        <label>Old Password</label>
+                        <input class="form-control" type="password" id="oldpassword" name="oldpassword" placeholder="Old Password" ng-model="shared.changepassword.oldpassword"
+                            required-message="'Old Password is required'" validate-on="dirty" autocomplete="off" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password" ng-model="shared.changepassword.newpassword"
+                            validator="shared.passwordValidator(shared.changepassword.newpassword) === true" invalid-message="shared.passwordValidator(shared.changepassword.newpassword)"
+                            required-message="'New Password is required'" validate-on="dirty" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm New Password"
+                            ng-model="shared.changepassword.confirmpassword" validator="shared.changepassword.newpassword === shared.changepassword.confirmpassword"
+                            validate-on="dirty" required-message="'Confirm New Password is required'" invalid-message="'Passwords do not match!'"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Change</button>
+                </form>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

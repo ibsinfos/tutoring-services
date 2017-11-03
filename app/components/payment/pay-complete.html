@@ -1,0 +1,107 @@
+<main class="layout_table" data-ng-init="payComplete.checkProjectAndUserSlug();">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+                <h2>You have chosen to release full payment on <strong>project completion</strong></h2>
+                <div ng-if="!payComplete.invalidData && !payComplete.startPayment">
+                    <p>Please use the form below to calculate the pricing structure</p>
+                    <form id="project_cost_calculator" name="project_cost_calculator" class="panel panel-default" novalidate>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Agreed Project Cost (USD)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+                                        <input id="agreed_project_cost" name="agreed_project_cost" ng-model="payComplete.projectCost.agreed_project_cost" type="text"
+                                            class="form-control inline_input" placeholder="type a number" ng-blur="payComplete.doMath_on_project_completion();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.agreed_project_cost.$dirty && project_cost_calculator.agreed_project_cost.$invalid && project_cost_calculator.agreed_project_cost.$error.required">Agreed Project Cost is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Total Project hours</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-hourglass" aria-hidden="true"></i></div>
+                                        <input id="total_project_hours" name="total_project_hours" ng-model="payComplete.projectCost.total_project_hours" type="text"
+                                            class="form-control inline_input" placeholder="type a number" ng-blur="payComplete.doMath_on_project_completion();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.total_project_hours.$dirty && project_cost_calculator.total_project_hours.$invalid && project_cost_calculator.total_project_hours.$error.required">Total Project hours is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Max hours per week</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-hourglass-half" aria-hidden="true"></i></div>
+                                        <input id="max_hours_per_week" name="max_hours_per_week" ng-model="payComplete.projectCost.max_hours_per_week" type="text"
+                                            class="form-control inline_input" placeholder="type a number" ng-blur="payComplete.doMath_on_project_completion();"
+                                            required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.max_hours_per_week.$dirty && project_cost_calculator.max_hours_per_week.$invalid && project_cost_calculator.max_hours_per_week.$error.required">Max hours per week is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <div class='input-group '>
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                        <input type="text" class="form-control inline_input" id="start_date" name="start_date" ng-model="payComplete.projectCost.start_date"
+                                            placeholder="pick a date" uib-datepicker-popup="EEEE, d MMM, yy" is-open="payComplete.start_date.opened"
+                                            datepicker-options="startDateOptions" ng-required="true" close-text="Close" ng-click="payComplete.start_date_popup()"
+                                            ng-change="payComplete.selectedDate();" required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.start_date.$dirty && project_cost_calculator.start_date.$invalid && project_cost_calculator.start_date.$error.required">Start Date is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>End date</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                        <input class="form-control inline_input" id="end_date" name="end_date" ng-model="payComplete.projectCost.end_date" uib-datepicker-popup="EEEE, d MMM, yy"
+                                            is-open="payComplete.end_date.opened" datepicker-options="endDateOptions" ng-required="true"
+                                            close-text="Close" ng-click="payComplete.end_date_popup()" required />
+                                    </div>
+                                    <span style="color:red" ng-show="project_cost_calculator.end_date.$dirty && project_cost_calculator.end_date.$invalid && project_cost_calculator.end_date.$error.required">End Date is required.</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>Agreement Overview</label>
+                                <textarea id="project_agreement" name="project_agreement" class="form-control project_agreement" ng-model="payComplete.projectCost.project_agreement"
+                                    placeholder="Please type your general agreement here" required></textarea>
+                                <span style="color:red" ng-show="project_cost_calculator.project_agreement.$dirty && project_cost_calculator.project_agreement.$invalid && project_cost_calculator.project_agreement.$error.required">Agreement Overview is required.</span>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="results">
+                                    <h3>Summary</h3>
+                                    <div class="result_row result_row_small">
+                                        Total Project Days: <strong><span id="total_project_days" ng-bind="payComplete.projectCost.total_project_days">--</span></strong>
+                                    </div>
+                                    <div class="result_row result_row_small">
+                                        Total Project Weeks: <strong><span id="total_project_weeks_as_integer" ng-bind="payComplete.projectCost.total_project_weeks_as_integer">--</span></strong>
+                                    </div>
+                                    <div class="result_row">
+                                        Total Project Cost (USD): <strong>$<span id="project_cost_total" ng-bind="payComplete.projectCost.project_cost_total">---</span></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ctions">
+                                <p class="message_framed"><strong>Remember:</strong> Your payment will be received by us and not by the freelancer.
+                                    We are only going to release payment instalments when you are happy and tell us to do
+                                    so. Once the payment transaction completes successfully, the freelancer will be officially
+                                    hired!
+                                </p>
+                                <label><input type="checkbox" ng-model="payComplete.projectCost.acceptTerms" id="acceptTerms" name="acceptTerms" required /> I accept the <a href="/terms" target="blank">Terms & Conditions</a></label>
+                                <div style="color:red" ng-show="project_cost_calculator.acceptTerms.$dirty && project_cost_calculator.acceptTerms.$invalid && project_cost_calculator.acceptTerms.$error.required">Please accept Terms and Conditions.</div>
+                                <button type="submit" class="btn btn-primary" ng-click="payComplete.calc_end_date_on_project_completion();" ng-disabled="project_cost_calculator.$invalid">Proceed to payment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div ng-if="payComplete.invalidData">
+                    <div class="alert alert-danger">
+                        {{payComplete.invalidDataMessage}}
+                    </div>
+                </div>
+                <div ng-if="payComplete.startPayment" class="form-group text-center">                    
+                    <paypal-button env="opts.env" style="opts.style" client="opts.client" payment="opts.payment" commit="opts.commit" on-authorize="opts.onAuthorize"></paypal-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

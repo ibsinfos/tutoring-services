@@ -1,0 +1,147 @@
+<aside class="main-sidebar">
+    <div class="slimScrollDiv">
+        <section class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active">
+                    <a ui-sref="administrator.dashboard">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <!-- <li class="treeview">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Products</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a ui-sref="administrator.product"><i class="fa fa-circle-o"></i> All Products</a></li>
+                        <li><a ui-sref="administrator.product.create"><i class="fa fa-circle-o"></i> Add New Product</a></li>
+                    </ul>
+                </li> -->
+                <li class="treeview" ng-class="{active: admin.isActive('/categories') || admin.isActive('/categories/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Categories</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/categories')}"><a ui-sref="administrator.category"><i class="fa fa-circle-o"></i> All Categories</a></li>
+                        <li ng-class="{active: admin.isActive('/categories/create')}"><a ui-sref="administrator.category.create"><i class="fa fa-circle-o"></i> Add New Category</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/subjects') || admin.isActive('/subjects/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Subjects</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/subjects')}"><a ui-sref="administrator.subject"><i class="fa fa-circle-o"></i> All Subjects</a></li>
+                        <li ng-class="{active: admin.isActive('/subjects/create')}"><a ui-sref="administrator.subject.create"><i class="fa fa-circle-o"></i> Add New Subject</a></li>
+                    </ul>
+                </li>
+                <!-- <li class="treeview" ng-class="{active: admin.isActive('/skills') || admin.isActive('/skills/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Project Skills</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/skills')}"><a ui-sref="administrator.skill"><i class="fa fa-circle-o"></i> All Project Skills </a></li>
+                        <li ng-class="{active: admin.isActive('/skills/create')}"><a ui-sref="administrator.skill.create"><i class="fa fa-circle-o"></i> Add New Skill</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/currency')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Currency</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/currency')}"><a ui-sref="administrator.currency"><i class="fa fa-circle-o"></i> Active Currency </a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/budgets') || admin.isActive('/budgets/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Project Budget</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/budgets')}"><a ui-sref="administrator.budget"><i class="fa fa-circle-o"></i> All Project Budgets </a></li>
+                        <li ng-class="{active: admin.isActive('/budgets/create')}"><a ui-sref="administrator.budget.create"><i class="fa fa-circle-o"></i> Add New Budget</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/packages') || admin.isActive('/packages/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Project Packages</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/packages')}"><a ui-sref="administrator.package"><i class="fa fa-circle-o"></i> All Project Packages </a></li>
+                        <li ng-class="{active: admin.isActive('/packages/create')}"><a ui-sref="administrator.package.create"><i class="fa fa-circle-o"></i> Add New Package </a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/projects')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Projects</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/projects')}"><a ui-sref="administrator.projects"><i class="fa fa-circle-o"></i> All Projects </a></li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-class="{active: admin.isActive('/reasons') || admin.isActive('/reasons/create')}">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Violation Reasons</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-class="{active: admin.isActive('/reasons')}"><a ui-sref="administrator.reason"><i class="fa fa-circle-o"></i> All Violation Reasons</a></li>
+                        <li ng-class="{active: admin.isActive('/reasons/create')}"><a ui-sref="administrator.reason.create"><i class="fa fa-circle-o"></i> Add New Reason</a></li>
+                    </ul>
+                </li> -->
+                <!-- <li class="treeview">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-files-o"></i>
+                        <span>Users</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> All Users</a></li>
+                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> Add New User</a></li>
+                    </ul>
+                </li> -->
+                <!-- <li><a href="javascript:void(0);"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
+                <!-- <li class="header">LABELS</li>
+                <li><a href="javascript:void(0);"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                <li><a href="javascript:void(0);"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                <li><a href="javascript:void(0);"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
+            </ul>
+        </section>
+    </div>
+</aside>

@@ -1,0 +1,9 @@
+<header class="portal_header loggedin">
+    <div class="container-fluid" ng-if="!$root.isLogin">
+        <a ui-sref="root" class="logo"><img src="assets/front/img/logo.png" alt="Tutoring Services" class="img-responsive" /></a>
+    </div>
+    <div class="container-fluid" ng-if="$root.isLogin">
+        <a ui-sref="root" class="logo"><img src="assets/front/img/logo.png" alt="Tutoring Services" class="img-responsive" /></a>
+        <user-header></user-header>
+    </div>
+</header>

@@ -1,0 +1,101 @@
+<div class="modal-body">
+   <div class="col-xs-12 active_frame">
+      <div class="close_black" ng-click="addTaskModal.close(employer.editFlag = false)"></div>
+      <h3>what do you want to create?</h3>
+      <p>Use the form below to create a new project</p>
+      <form id="msform" novalidate angular-validator angular-validator-submit='employer.saveProject()' enctype="multipart/form-data">
+         
+            <div class="row">
+                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                     <p class="formtitle"><span class="glyphicon glyphicon-pencil"></span> Name your project</p>
+                     <div class="form-group">
+                         <input class="form-control" type="text" name="name" ng-model="employer.projectForm.name" validate-on='dirty' required=""
+                         />
+                     </div>
+                     <p class="formtitle"><span class="glyphicon glyphicon-pencil"></span> Add a description</p>
+                     <div class="form-group">
+                         <textarea class="form-control textarea_project_description" name="description" ng-model="employer.projectForm.description"
+                             validate-on='dirty' required=""></textarea>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                     <p class="formtitle"><span class="glyphicon glyphicon-screenshot"></span> Define the
+                         project
+                     </p>
+
+                     <div class="form-group">
+                        <select ng-if='true' class="form-control" name="primaryCat" ng-model="employer.projectForm.primaryCat">
+                           <option value="">Please select an area</option>
+                           <option value="{{cat.id}}" ng-repeat="cat in employer.primaryCat">{{cat.name}}</option>
+                        </select>
+                     </div>
+
+                     <div class="form-group">
+                         <select ng-if='true' class="form-control" name="budget" ng-model="employer.projectForm.budgetType" validate-on='dirty' required=""
+                             ng-change="employer.getBudgets(employer.projectForm.budgetType)">
+                           <option value="">Please select budget type</option>
+                           <option value="1">Project Basis</option>
+                           <option value="2">Hourly Basis</option>
+                         </select>
+                     </div>
+
+                     <div class="form-group">
+                         <select ng-if='true' class="form-control" name="budget" ng-model="employer.projectForm.budget" validate-on='dirty' required="">
+                           <option value="">Please select a budget</option>
+                           <option value="{{item.id}}" ng-repeat="item in employer.budgetRange">{{item.range}}</option>
+                         </select>
+                     </div>
+
+                     <div class="form-group">
+                        <select ng-if='true' class="form-control" name="urgency" ng-model="employer.projectForm.urgency" validate-on='dirty' required="">
+                           <option value="">Please select urgency</option>
+                           <option value="{{item.id}}" ng-repeat="item in employer.urgencyRange">{{item.range}}</option>
+                        </select>
+                     </div>
+
+                     <div class="form-group">
+                         <p class="formtitle"><span class="glyphicon glyphicon-file"></span> Upload a specification</p>
+                         <input type="file" class="form-control" ngf-select="uploadFiles($files, $invalidFiles)" multiple ng-model="picFile" name="file"
+                             ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                     </div>
+
+                 </div>
+            </div>
+
+            <p class="formtitle">Please select skills you need</p>
+            <div data-ng-repeat="(key, choice) in employer.choices">
+               <div class="principles_group" id="principles_group">
+                  <select ng-if="true" class="principles form-control" name="skill" validate-on='dirty' required="" ng-model="employer.projectForm.category[key]"
+                         ng-change="employer.getSkills(employer.projectForm.category[key], key, oldValue)"
+                         ng-options="category as category.name for category in employer.categories[key] track by category.id"
+                         ng-click="oldValue = employer.projectForm.category[key]"> 
+                     <option value="">Please pick a principle</option>
+                  </select>
+               </div>
+               <div class="skills_wrap" ng-if="employer.skills[key].length > 0">
+                  <div id="accounting" class="skills">
+                     <label ng-repeat="skill in employer.skills[key]">
+                        <input type="checkbox" ng-click="employer.getCheckedSkills(employer.projectForm.category[key].id, skill.id, active)" ng-model="active" value="{{ skill.id }}" /> {{ skill.name }}
+                     </label>
+                  </div>
+               </div>
+               <div class="addmore_wrap">
+                  <div class="btn btn-danger btn-sm btn-xs" ng-if="!$first" ng-show="$last" ng-click="employer.removePrinciple(key, employer.projectForm.category[key])">
+                     <span class="glyphicon glyphicon-minus-sign"></span> remove
+                         principle
+                  </div>
+               </div>
+            </div>
+            <div class="addmore_wrap">
+                 <div class="btn btn-default" ng-disabled="employer.flagAddPrinciple" ng-click="employer.flagAddPrinciple || employer.addPrinciple()"><span class="glyphicon glyphicon-plus-sign"></span> add a different
+                     principle
+                 </div>
+            </div>
+         <br />
+         <div class="actions">
+            <button class="btn btn-primary" type="submit" name="submit">
+            <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;create project!</button>
+         </div>
+     </form>
+   </div>
+</div>

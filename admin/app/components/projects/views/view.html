@@ -1,0 +1,103 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Project Details</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>   
+                </div>
+                <div class="box-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                              <td><strong>Owner :</strong></td>
+                              <td>{{project.projectDetails.project.firstname + " " + project.projectDetails.project.lastname}}</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Name :</strong></td>
+                              <td>{{project.projectDetails.project.name}}</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Category :</strong></td>
+                              <td>{{project.projectDetails.project.category_name}}</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Description :</strong></td>
+                              <td>{{project.projectDetails.project.description}}</td>
+                            </tr>
+                            <tr ng-if="project.images.length > 0">
+                                <td><strong>Images :</strong></td>
+                                <td>
+                                    <div class="gallery" ng-repeat="image in project.images track by $index">
+                                        <a ng-href="{{$root.baseUrl + 'uploads/users/' + project.projectDetails.project.user_id + '/projects/' + project.projectDetails.project.id + '/' + '/images/' +  image.file_name}}" download>
+                                            <img src="{{$root.baseUrl + 'uploads/users/' + project.projectDetails.project.user_id + '/projects/' + project.projectDetails.project.id + '/' + '/images/' +  image.file_name}}"/>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr ng-if="project.otherFiles.length > 0">
+                              <td><strong>Other Files :</strong></td>
+                              <td>
+                                    <div ng-repeat="file in project.otherFiles track by $index">
+                                        <a class="black-link" ng-href="{{$root.baseUrl + 'uploads/users/' + project.projectDetails.project.user_id + '/projects/' + project.projectDetails.project.id + '/files/' +  file.file_name}}" download>
+                                            <img src="../assets/admin/img/file.png" class="file-image">
+                                            <div class="desc">Download</div>
+                                        </a>
+                                    </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6" ng-if="project.projectDetails.tasks.length > 0">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Project Tasks</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>   
+                </div>
+                <div class="box-body">
+                    <p ng-repeat="item in project.projectDetails.tasks">
+                        <span class="label ng-binding label-default" id="status-2">{{item.name}}</span>
+                    </p>
+                    <!-- <ul class="nav nav-stacked">
+                        <span class="label status ng-binding label-danger" id="status-8" ng-class="label-success">Not Approved</span>
+                        <li ng-repeat="item in project.projectDetails.tasks">{{item.name}}</li>
+                    </ul> -->
+                </div>
+            </div>           
+        </div>
+
+        <div class="col-md-6" ng-if="project.projectDetails.skills.length > 0">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Project Skills</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>   
+                </div>
+                <div class="box-body">
+                    <p ng-repeat="item in project.projectDetails.skills">
+                        <span class="label ng-binding label-default" id="status-2">{{item.skill_name}}</span> 
+                    </p>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+    <div class="box-footer">
+        <div class="center-btn pull-right">
+            <button type="button" ng-click="project.approve(project.projectDetails.project.id)" class="btn btn-success" ng-disabled="disabled"><i class="fa fa-check" aria-hidden="true"></i> Approve</button>
+        </div>
+    </div>
+
+</section>

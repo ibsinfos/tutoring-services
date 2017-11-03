@@ -1,0 +1,18 @@
+<div class="modal-header">
+   <h3 class="modal-title" id="modal-title">Sort Categories</h3>
+</div>
+<div class="modal-body" id="modal-body">
+   <div data-ng-init="category.getParentCategories();">
+      <div class="category-list">
+         <ul class="nav nav-stacked" ui-sortable="category.sortableOptions" ng-model="category.parentCategories">
+            <li ng-repeat="item in category.parentCategories">
+               <a href="javascript:void(0)">{{item.name}}</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" type="button" ng-click="category.saveCategoryOrder()">Save Changes</button>
+   <button class="btn btn-warning" type="button" ng-click="categorySortModal.close()">Close</button>
+</div>

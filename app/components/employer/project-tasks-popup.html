@@ -1,0 +1,32 @@
+<div class="modal-body">
+   <div class="col-xs-12 active_frame">
+      <div class="close_black" ng-click="addTaskModal.close(employer.editFlag = false)"></div>
+      <h2>Tasks</h2>
+      <div class="tasks">
+         <form class="manage_tasks" novalidate angular-validator angular-validator-submit='employer.addTask()'>
+            <table class="table table-striped" ng-if="employer.tasks">
+               <tr ng-repeat="item in employer.tasks" id="task-{{item.id}}">
+                  <td>
+                     <label><input type="checkbox" ng-model="selectedTask" ng-change= "employer.selectTask(item.id)"/> {{item.name}}</label>
+                     <a class="edit-task" ng-click="employer.editTask(item.id)"><i class="fa fa-edit pull-right"></i></a>
+                  </td>
+               </tr>
+            </table>
+            <div class="actions">
+               <button ng-if="employer.tasks" type="button" class="btn btn-default" ng-click="employer.deleteTasks()"><span class="glyphicon glyphicon-remove-circle"></span> Delete selected</button>
+               <br /><br />
+               <div class="input-group">
+                  <input class="form-control" placeholder="Name your task" name="task_name" ng-model="employer.taskForm.name" required=""/>
+                  <span class="input-group-btn">
+                     <button ng-if="!employer.editFlag" type="submit" class="btn btn-primary add-task"><span class="glyphicon glyphicon-plus-sign"></span>Add task</button>
+                     <button ng-if="employer.editFlag" type="submit" class="btn btn-primary add-task"><span class="glyphicon glyphicon-edit"></span> Edit task</button>
+                  </span>
+               </div>
+               <br />
+               <br />
+               <!-- <button type="submit" class="btn btn-primary"> save changes</button> -->
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

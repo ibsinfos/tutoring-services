@@ -1,0 +1,21 @@
+<div class="row summary">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="avatar">
+            <img disable-context-menu class="img-responsive" alt="" ng-if="$root.userProfilePhoto" ng-src="{{$root.userProfilePhoto}}" />
+            <span ngf-select="shared.uploadFiles($files, $invalidFiles)" ng-model="shared.userPhoto" name="file" ngf-max-size="2MB" ngf-pattern="image/*"
+                ngf-model-invalid="errorFile"><i class="fa fa-upload fa-2x" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <h2 class="name">{{shared.userInfo.firstname}} {{shared.userInfo.lastname}}</h2>
+        <div class="status" data-toggle="tooltip" title="you have reached 20 5-star reviews!">{{shared.userInfo.role_name}}</div>
+        <div class="star_ratings" data-toggle="tooltip" title="84% positive feedback">
+            <div class="star_ratings_top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        </div>
+        <div class="rating_total">(2 reviews)</div>
+        <div class="project_completion_rate" data-toggle="tooltip" title="13/14 projects completed successfully" ng-if="shared.userInfo.role_id==3">99%</div>
+        <div class="role">{{shared.userInfo.headline}}</div>
+        <p class="budget" ng-if="shared.userInfo.role_id == 3">Hourly rate: ${{shared.userInfo.hourly_rate}}</p>
+    </div>
+</div>

@@ -1,0 +1,358 @@
+footer {
+    position: sticky;
+    bottom: 0;
+    box-sizing: border-box;
+    left: 10px;
+    right: 10px;
+}
+
+.maincontent {
+    margin: 50px auto;
+}
+
+.add-task {
+    height: 34px;
+}
+
+.modal-content {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.edit-task {
+    cursor: pointer;
+    color: #333 !important;
+}
+
+.active_frame {
+    padding-bottom: 60px;
+}
+
+.avatar {
+    position: relative;
+    height: 120px;
+    width: 120px;
+}
+
+.avatar img {
+    height: 100%;
+    width: 100%;
+}
+
+.avatar span {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: #fff;
+    top: 90px;
+    opacity: 0.6;
+    padding: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.avatar span .fa {
+    font-size: 1.3em;
+    opacity: 1;
+}
+
+.avatar:hover span {
+    display: block;
+}
+
+.profile .tab_item #skills ul li {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.user-skills-popup .skills {
+    margin: 6px 0px;
+}
+
+.user-skills-popup .skills label {
+    width: 24%;
+    background: #ddd;
+    padding: 4px 10px;
+    margin: 2px;
+}
+
+.user-skills-popup .addmore_wrap {
+    margin-top: 10px;
+}
+
+.user-skills-popup .panel {
+    margin-bottom: 0px;
+}
+
+.user-skills-popup .panel-body {
+    padding: 0;
+}
+
+.major-category-list {
+    margin: 0;
+}
+
+.major-category-list li {
+    width: 25%;
+    height: 100px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #eee;
+    vertical-align: middle;
+    padding: 10px 6px;
+}
+
+.major-category-list li:hover {
+    background: slategrey;
+    cursor: pointer;
+    color: #fff;
+}
+
+.major-category-nav {
+    border-bottom: 1px solid #ccc;
+    padding: 6px;
+    height: 44px;
+}
+
+.available-skill-list {
+    padding: 10px;
+    margin: 0;
+    height: 255px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.available-skill-list li:hover {
+    background: slategray;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.available-skill-list li {
+    width: 48%;
+    display: inline-block;
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    margin-left: 6px;
+}
+
+.available-skill-list li.active {
+    background: slategrey;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.selected-skill-list li:hover {
+    background: slategrey;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.selected-skill-list li {
+    padding: 6px;
+}
+
+.selected-skill-list {
+    padding: 6px;
+    height: 255px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.user-skills-popup .active_frame {
+    padding-bottom: 40px;
+}
+
+.available-skill-list.no-skills-found {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.available-skill-list.no-skills-found b {
+    font-size: 16px;
+}
+
+.project-toast.toast-success {
+    background-color: slategrey;
+}
+
+#toast-container .toast.project-toast {
+    width: 460px;
+}
+
+.settings-popup .tab-content {
+    padding: 15px;
+}
+
+.active_frame.settings-popup h2 {
+    margin-top: 0;
+}
+
+#toast-container .toast.project-toast {
+    padding: 15px 15px 15px 20px !important;
+    background-image: none !important;
+}
+
+.bid-popup ul.list-inline {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 3px;
+    display: inline-block;
+    margin: 0;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.bid-popup ul.list-inline p {
+    margin-bottom: 4px;
+}
+
+.bid-popup ul.list-inline .text-red {
+    color: #ee6d70;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.bid-popup ul.list-inline li.text-green b {
+    font-size: 18px;
+}
+
+.bid-popup ul.list-inline li.text-green {
+    color: lightseagreen;
+}
+
+.bid-popup p.bid-heading {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.bid-popup .report-project p.text-red a {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ee6d70;
+    cursor: pointer;
+}
+
+.bid-popup .report-project p {
+    margin-bottom: 5px;
+}
+
+.bid-popup ul.list-inline li:last-child {
+    border: none;
+}
+
+.bid-popup ul.list-inline li {
+    border-right: 1px solid #ccc;
+    padding: 0 10px;
+}
+
+.bid-popup ul.list-inline.single-skill {
+    border: none;
+    text-align: left;
+    margin: 0;
+    display: block;
+    padding: 0;
+}
+
+.bid-popup ul.list-inline.single-skill li {
+    border: none;
+    padding: 0;
+    padding-right: 10px;
+    margin-bottom: 3px;
+    border-left: 3px solid #ee6d70;
+    padding-left: 6px;
+    width: 20%;
+}
+
+.report-abuse-popup .form-control[disabled],
+.report-abuse-popup .form-control[readonly],
+.report-abuse-popup fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
+}
+
+
+.borderless .input-group {
+    width: 180px !important;
+    margin-bottom: 10px;
+}
+
+table.borderless td {
+    width: 100px;
+}
+
+.bid-popup fieldset {
+    margin-bottom: 15px;
+}
+
+.form-inline {
+    margin-bottom: 15px;
+}
+
+.form-inline input[type="text"] {
+    width: 60%;
+}
+
+.form-inline .input-group {
+    width: 150px;
+}
+
+i.fa.fa-times.fa-2x.text-red {
+    color: #ee6d70;
+    top: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+.panel-danger>.panel-heading {
+    color: #fff;
+    background-color: #ee6d70;
+    border-color: #ee6d70;
+}
+
+.panel-danger {
+    border-color: #ee6d70;
+}
+
+h3.bid-amount {
+    margin: 0;
+    font-weight: 600;
+}
+
+.bid-row{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ee6d70;
+    padding-bottom: 15px;
+}
+
+.bid-row:last-child {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.find_projects .tab_item h2 strong em {    
+    width: 20px;
+    height: 20px;    
+    padding-top: 5px;
+}
+
+/* paypal-button.paypalBtn {
+    display: none;
+} */
+
+.project .project_info p {
+    margin: 0;
+}

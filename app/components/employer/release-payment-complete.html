@@ -1,0 +1,26 @@
+<div class="modal-body">
+    <div class="col-xs-12 col-sm-12 col-md-12 active_frame">
+        <div class="close_black" ng-click="releasePaymentModal.close()"></div>
+        <h2>Release a payment</h2>
+        <table class="table">
+            <tr>
+                <td>Project name</td>
+                <td>{{employer.release.name}}</td>
+            </tr>
+            <tr>
+                <td>Freelancer assigned</td>
+                <td>{{employer.release.freelancer_firstname + ' ' + employer.release.freelancer_lastname}}</td>
+            </tr>
+            <tr>
+                <td>Project cost</td>
+                <td>${{employer.release.total_project_cost}}</td>
+            </tr>
+            <tr>
+                <td>Payment Method</td>
+                <td>{{employer.release.payment_type == 1 ? 'Weekly' : 'Complete'}}</td>
+            </tr>
+        </table>
+        <p><a href="#" class="btn btn-primary">release payment (£{{employer.release.total_project_cost}})</a></p>
+        <p class="message">Clicking the above button will notify us that you are happy for us to pay <span class="freelancer_name">{{employer.release.freelancer_firstname}}</span>            ${{employer.release.total_project_cost}} out of the money we hold on your account</p>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div ng-if="rating.action == 'edit'">
+	<a href="" class="btn btn-primary" ng-click="rating.openReviewRatingModal(rating.reviewId);">Edit review</a>
+</div>
+<div ng-if="rating.action == 'add'">
+	<span class="pull-right btn btn-default" ng-click="rating.openReviewRatingModal();">
+		<strong class="glyphicon glyphicon-star"></strong> review
+	</span>
+</div>

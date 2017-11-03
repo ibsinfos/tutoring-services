@@ -1,0 +1,386 @@
+[{
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 1,
+    "category_name": "Mobiles",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 2,
+    "category_name": "Television",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 3,
+    "category_name": "Music System",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 4,
+    "category_name": "Laptops",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 5,
+    "category_name": "Clothes",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 6,
+    "category_name": "Clothes2",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 7,
+    "category_name": "Clothes3",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 8,
+    "category_name": "Clothes4",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 9,
+    "category_name": "Clothes5",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}, {
+    "category_id": 10,
+    "category_name": "Clothes6",
+    "category_created_at": "19-11-2016",
+    "category_status": 0
+}, {
+    "category_id": 11,
+    "category_name": "Clothes7",
+    "category_created_at": "19-11-2016",
+    "category_status": 1
+}]

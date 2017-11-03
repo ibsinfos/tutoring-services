@@ -1,0 +1,19 @@
+<div class="tab_item">
+    <h2 class="tab_activator">Reviews {{ratingList.title}} <strong class="total">{{ratingList.reviewRatingsList.length}}</strong><span class="more"></span></h2>
+
+    <div class="tab_content" id="reviews" data-ng-init="ratingList.getUserReviewRatings(ratingList.userId,ratingList.type)">
+        <div class="review" ng-repeat="item in ratingList.reviewRatingsList">
+            <div class="star_ratings">
+                <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            </div>
+            <div class="title">{{item.title}}</div>
+            <div class="desc">{{item.description}}</div>
+            <div class="reviewee">{{item.project}}</div>
+            <div class="actions" ng-if="ratingList.type == 2 && item.remainingDays != 0">
+                <add-user-review-rating project-id="item.project_id" receiver-id="item.receiver_id" project-name="item.project" action="edit" review-id="item.id"></add-user-review-rating>
+                <div class="message">you have <strong>{{item.remainingDays}} days</strong> to change your mind</div>
+            </div>
+        </div>
+    </div>
+</div>

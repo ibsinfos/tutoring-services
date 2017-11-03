@@ -1,0 +1,28 @@
+<div class="login-box">
+    <div class="login-logo">
+        <a ui-sref="administrator.dashboard"><b>TS Dashboard</b></a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <div class="form-group">
+            <form angular-validator-submit="auth.login(auth.user)" name="myForm" novalidate angular-validator>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Email" name="email" ng-model="auth.user.email" invalid-message="'Invalid Email address entered'"
+                        required-message="'Email address is required'" validate-on="dirty" required/>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Password" name="password" ng-model="auth.user.password" required-message="'Password is required'"
+                        validate-on="dirty" required/>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="form-group text-center">
+            <a ui-sref="auth.forgotpassword">I forgot my password</a><br>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,247 @@
+<main class="layout_table" ng-init="profile.searchFreelancer();">
+    <section class="info layout_table_cell">
+        <div class="container-fluid">
+            <div class="row summary">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="avatar"><img ng-if="profile.userProfilePhoto" ng-src="{{profile.userProfilePhoto}}" class="img-responsive" alt="" /></div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <h2 class="name">{{profile.userProfile.firstname}} {{profile.userProfile.lastname}}</h2>
+                    <div class="status" data-toggle="tooltip" title="you have reached 20 5-star reviews!">{{profile.userProfile.role_name}}</div>
+                    <div class="star_ratings" data-toggle="tooltip" title="84% positive feedback">
+                        <div class="star_ratings_top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <div class="rating_total">(2 reviews)</div>
+                    <div class="project_completion_rate" data-toggle="tooltip" title="13/14 projects completed successfully">99%</div>
+                    <div class="role">{{profile.userProfile.headline}}</div>
+                    <p class="budget">Hourly rate: ${{profile.userProfile.hourly_rate}}</p>
+                </div>
+            </div>
+            <div class="tabspanel">
+                <div class="tab_item">
+                    <h2 class="tab_activator ">Skills <strong class="total">{{ profile.skillsCount }}</strong><span class="more"></span></h2>
+                    <div class="tab_content" id="skills">
+                        <div class="skillset" ng-repeat="category in profile.userSkills.category_details">
+                            <h3>{{category.category_name}}</h3>
+                            <ul>
+                                <li ng-repeat="skill in profile.userSkills.skill_details[category.category_id]">{{skill.name}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab_item">
+                    <h2 class="tab_activator ">Reviews <strong class="total">2</strong><span class="more"></span></h2>
+                    <div class="tab_content" id="reviews">
+                        <div class="review">
+                            <div class="star_ratings">
+                                <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <div class="title">Amazing!</div>
+                            <div class="desc">"Really impressed with the knowledge and experience and out of the box thinking. Always at the
+                                end of the phone when needed and nothing seems to much trouble."</div>
+                            <div class="reviewee">CAPITA</div>
+                            <div class="star_ratings_breakdown">
+                                <div class="star_rating">
+                                    <p class="label">Job Quality</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Communication</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Availability</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Time Management</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="star_ratings">
+                                <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <div class="title">Could be better</div>
+                            <div class="desc">"Always at the end of the phone when needed and nothing seems to much trouble."</div>
+                            <div class="reviewee">FORD</div>
+                            <div class="star_ratings_breakdown">
+                                <div class="star_rating">
+                                    <p class="label">Job Quality</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Communication</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Availability</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                                <div class="star_rating">
+                                    <p class="label">Time Management</p>
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span> contact prolancer</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content layout_table_cell">
+        <div class="projects">
+            <h1><i class="fa fa-handshake-o" aria-hidden="true"></i> <strong>{{profile.userProfile.firstname}}</strong> is working on these projects for you</h1>
+            <div class="tabspanel">
+                <div class="tab_item project">
+                    <h2 class="tab_activator "><span class="meter" data-toggle="tooltip" title="15% complete"><em></em><span style="width: 15%"></span></span>
+                        <strong>Vodafone branding</strong> <span class="refid">/12345234</span></h2>
+                    <div class="tab_content">
+                        <div class="panel panel-default project_info">
+                            <div class="company"><span>Project Owner</span> Vodafone</div>
+                            <div class="startdate"><span>Start Date</span> 01 January 2017 <em>(46 days ago)</em></div>
+                            <div class="value"><span>cost</span> $1,200</div>
+                            <div class="actions">
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> contact prolancer</a>
+                            </div>
+                        </div>
+                        <div class="panel panel-default project_tasks">
+                            <h3><strong>15%</strong> towards completion</h3>
+                            <h4>Tasks</h4>
+                            <div class="tasks">
+                                <form class="manage_tasks">
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/> Framework</label>
+                                    <label data-toggle="tooltip" title="tick the box to close this task"><input class="" type="checkbox" /> Design</label>
+                                    <label data-toggle="tooltip" title="tick the box to close this task"><input class="" type="checkbox" /> HTML/CSS</label>
+                                    <label data-toggle="tooltip" title="tick the box to close this task"><input class="" type="checkbox" /> Template Creation</label>
+                                    <label data-toggle="tooltip" title="tick the box to close this task"><input class="" type="checkbox" /> Coding</label>
+                                    <label data-toggle="tooltip" title="tick the box to close this task"><input class="" type="checkbox" /> Q&A</label>
+                                </form>
+                            </div>
+                            <div class="message"><strong>Note:</strong> Changes will not be retained unless you save</div>
+                            <div class="actions">
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> save changes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_item project project_closed">
+                    <h2 class="tab_activator "><span class="meter" data-toggle="tooltip" title="100% complete"><em></em><span style="width: 100%"></span></span>
+                        <strong>Vodafone website</strong> <span class="refid">/12345567</span></h2>
+                    <div class="tab_content">
+                        <div class="panel panel-default project_info">
+                            <div class="company"><span>Project Owner</span> Vodafone</div>
+                            <div class="startdate"><span>Start Date</span> 01 January 2017 <em>(46 days ago)</em></div>
+                            <div class="value"><span>cost</span> $1,400</div>
+                            <div class="actions">
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> contact prolancer</a>
+                            </div>
+                        </div>
+                        <div class="panel panel-default project_tasks">
+                            <h3><strong>100%</strong> complete</h3>
+                            <h4>Tasks</h4>
+                            <div class="tasks">
+                                <form class="manage_tasks">
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>Framework</label>
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>Design</label>
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>HTML/CSS</label>
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>Template Creation</label>
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>Coding</label>
+                                    <label data-toggle="tooltip" title="you closed this task" class="completed"><input class="" type="checkbox" checked disabled/>Q&A</label>
+                                </form>
+                            </div>
+                            <div class="message"><strong>Note:</strong> Changes will not be retained unless you save</div>
+                            <div class="actions">
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> save changes</a>
+                            </div>
+                        </div>
+                        <div class="project_rating">
+                            <div class="review">
+                                <div class="star_ratings">
+                                    <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                </div>
+                                <div class="title">Amazing!</div>
+                                <div class="desc">"Really impressed with the knowledge and experience and out of the box thinking. Always at
+                                    the end of the phone when needed and nothing seems to much trouble."</div>
+                                <div class="reviewee">CAPITA</div>
+                                <div class="actions">
+                                    <a href="" class="btn btn-primary">edit review</a>
+                                    <div class="message">you have <strong>15 days</strong> to change your mind</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects">
+            <h1><i class="fa fa-eye" aria-hidden="true"></i> <strong>{{profile.userProfile.firstname}}</strong> is interested in these projects</h1>
+            <div class="tabspanel">
+                <div class="tab_item project">
+                    <h2 class="tab_activator "><strong>Vodafone digital interactive brochure</strong> <span class="refid">/12345678</span></h2>
+                    <div class="tab_content">
+                        <div class="potential panel panel-default">
+                            <div class="close btn btn-default">hide this</div>
+                            <div class="info">
+                                <p class="budget">Hourly rate: $7 <span class="message">The budget for this project is <strong>$1,600</strong>. This will give you <strong>228.5 hours</strong> of Jon's time. </span></p>
+                                <div class="actions">
+                                    <button class="btn btn-primary btn_talk_to_freelancer"><span class="glyphicon glyphicon-comment"></span> Talk</button>
+                                    <button class="btn btn-secondary btn_hire_freelancer"><span class="glyphicon glyphicon-ok-sign"></span> Hire </button>
+                                    <button class="btn btn-default btn_decline_freelancer"><span class="glyphicon glyphicon-thumbs-down"></span> Decline </button>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <h4>Skillmatch <span class="skillmatch">100%</span></h4>
+                                <span class="meter meterfull" data-toggle="tooltip" title="" data-original-title="100% skills match"><em></em><span style="width: 100%"></span></span>
+                                <div class="skillrequested">
+                                    <ul>
+                                        <li>Photoshop</li>
+                                        <li>HTML 5</li>
+                                        <li>CSS</li>
+                                        <li>PHP</li>
+                                        <li>Javascript</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

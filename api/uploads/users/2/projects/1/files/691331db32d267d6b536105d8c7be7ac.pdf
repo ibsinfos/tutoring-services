@@ -1,0 +1,332 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Sep 06, 2017 at 06:19 PM
+-- Server version: 5.7.19-0ubuntu0.16.04.1
+-- PHP Version: 7.0.22-0ubuntu0.16.04.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `prolance`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `currency`
+--
+
+CREATE TABLE `currency` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_templete`
+--
+
+CREATE TABLE `email_templete` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci,
+  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'admin or user',
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(37, '2017_08_31_071623_create_user_table', 1),
+(38, '2017_08_31_105212_create_user_profile_table', 1),
+(39, '2017_08_31_112145_create_project_table', 1),
+(40, '2017_08_31_124533_create_currency_table', 1),
+(41, '2017_08_31_124634_create_skills_table', 1),
+(42, '2017_08_31_124909_create_email_templete_table', 1),
+(43, '2017_09_04_132614_create_user_roles_table', 1),
+(44, '2017_09_04_190524_create_password_resets_table', 1),
+(45, '2017_09_05_145607_create_category_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `discription` text COLLATE utf8_unicode_ci,
+  `skills` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `budget` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `attachment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pro_categories`
+--
+
+CREATE TABLE `pro_categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pro_categories`
+--
+
+INSERT INTO `pro_categories` (`id`, `name`, `description`, `parent_id`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
+(1, 'Shoes', 'black canvas', 0, 0, 0, NULL, NULL),
+(2, 'Bags', 'blue', 0, 0, 0, NULL, NULL),
+(3, 'Watches', 'round dial', 0, 0, 0, NULL, NULL),
+(4, 'canvas', 'white', 1, 0, 0, NULL, NULL),
+(5, 'handbags', 'black', 2, 0, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skills`
+--
+
+CREATE TABLE `skills` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `is_email_verified` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `role_id`, `is_email_verified`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
+(1, 'shifali.s@cisinlabs.com', '$2y$10$1APWG59shncc7Lh3t5M.7O9t2x4KOgD/jXgfMcbKf578jG5wQES0y', 1, 1, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_profile`
+--
+
+CREATE TABLE `user_profile` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `firstname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `cover_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `profile_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `skills` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `city` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_name` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `role_details` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`id`, `role_name`, `role_details`, `created_at`, `updated_at`) VALUES
+(1, 'super_admin', 'Super Admin', NULL, NULL),
+(2, 'admin', 'Admin', NULL, NULL),
+(3, 'user', 'User', NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `currency`
+--
+ALTER TABLE `currency`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_templete`
+--
+ALTER TABLE `email_templete`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pro_categories`
+--
+ALTER TABLE `pro_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `skills`
+--
+ALTER TABLE `skills`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_profile`
+--
+ALTER TABLE `user_profile`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `currency`
+--
+ALTER TABLE `currency`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `email_templete`
+--
+ALTER TABLE `email_templete`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pro_categories`
+--
+ALTER TABLE `pro_categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `user_profile`
+--
+ALTER TABLE `user_profile`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

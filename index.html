@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tutoringApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="assets/front/img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link rel='stylesheet' href='vendor/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/angucomplete-alt/angucomplete-alt.css">
+    <link rel="stylesheet" href="vendor/angularjs-datetime-picker/angularjs-datetime-picker.css" />
+    <link rel="stylesheet" href="assets/front/css/sweetalert.css">
+    <link rel="stylesheet" href="vendor/angular-material/angular-material.css">
+
+    <link rel="stylesheet" href="vendor/angular-jk-rating-stars/dist/jk-rating-stars.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <base href="/"> -->
+    <title>Tutoring Services</title>
+
+    <!-- Angular modules -->
+    <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+    <script type="text/javaScript" src="vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javaScript" src="vendor/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="vendor/moment/min/moment-with-locales.js"></script>
+    <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script type='text/javascript' src='vendor/angular-loading-bar/build/loading-bar.min.js'></script>
+    <script type="text/javascript" src="vendor/tg-angular-validator/dist/angular-validator.min.js"></script>
+    <script type="text/javascript" src="vendor/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="vendor/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="vendor/angularUtils-pagination/dirPagination.js"></script>
+    <script type="text/javascript" src="vendor/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+    <!-- <script type="text/javascript" src="vendor/ngSweetAlert/SweetAlert.min.js"></script> -->
+    <script type="text/javascript" src="assets/front/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="vendor/ng-file-upload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script type="text/javascript" scr="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+
+    <script src="vendor/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+
+    <!-- All Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/front/css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/front/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/front/css/jquery.ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/front/css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/front/css/custom.css" />
+
+
+    <!-- All Javascript -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script type="text/javascript" src="../assets/front/js/underscore.min.js"></script>
+    <script type="text/javascript" src="../assets/front/js/select2.min.js"></script>
+    <script type="text/javascript" src="../assets/front/js/forms.js"></script>
+    <script type="text/javascript" src="../assets/front/js/theme.js"></script>
+
+    <!-- Auth Module, Auth Controller, Auth Service -->
+    <script type="text/javascript" src="app/components/auth/auth.module.js"></script>
+    <script type="text/javascript" src="app/components/auth/auth.controller.js"></script>
+    <script type="text/javascript" src="app/components/auth/auth.service.js"></script>
+
+    <!-- Shared Module, Shared Controller, Shared Service -->
+    <script type="text/javascript" src="app/components/shared/shared.module.js"></script>
+    <script type="text/javascript" src="app/components/shared/shared.controller.js"></script>
+    <script type="text/javascript" src="app/components/shared/shared.service.js"></script>
+    <script type="text/javascript" src="app/components/shared/shared.directive.js"></script>
+
+    <!-- Home Controller and Home Service -->
+    <script type="text/javascript" src="app/components/home/home.controller.js"></script>
+    <script type="text/javascript" src="app/components/home/home.service.js"></script>
+
+    <!-- Freelancer Module, Freelancer Controller, Freelancer Service -->
+    <script type="text/javascript" src="app/components/freelancer/freelancer.module.js"></script>
+    <script type="text/javascript" src="app/components/freelancer/freelancer.controller.js"></script>
+    <script type="text/javascript" src="app/components/freelancer/freelancer.service.js"></script>
+
+    <!-- Employer Module and Employer Controller -->
+    <script type="text/javascript" src="app/components/employer/employer.module.js"></script>
+    <script type="text/javascript" src="app/components/employer/employer.controller.js"></script>
+    <script type="text/javascript" src="app/components/employer/employer.service.js"></script>
+
+    <!-- Search Module, Search Controller, Search Service -->
+    <script type="text/javascript" src="app/components/search/search.module.js"></script>
+    <script type="text/javascript" src="app/components/search/search.controller.js"></script>
+    <script type="text/javascript" src="app/components/search/search.service.js"></script>
+
+    <!-- Project Module, Project Controller, Project Service -->
+    <script type="text/javascript" src="app/components/project/project.module.js"></script>
+    <script type="text/javascript" src="app/components/project/project.controller.js"></script>
+    <script type="text/javascript" src="app/components/project/project.service.js"></script>
+
+    <!-- Profile Module, Profile Controller, Profile Service -->
+    <script type="text/javascript" src="app/components/profile/profile.module.js"></script>
+    <script type="text/javascript" src="app/components/profile/profile.controller.js"></script>
+    <script type="text/javascript" src="app/components/profile/profile.service.js"></script>
+
+    <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+
+    <!-- Payment Module, Payment Controller, Payment Service -->
+    <script type="text/javascript" src="app/components/payment/payment.module.js"></script>
+    <script type="text/javascript" src="app/components/payment/payment.controller.js"></script>
+    <script type="text/javascript" src="app/components/payment/payment.service.js"></script>    
+    <script type="text/javascript" src="app/components/components/review_ratings/add_review_ratings.component.js"></script>
+    <script type="text/javascript" src="app/components/components/review_ratings/review_ratings_list.component.js"></script>
+    <script type="text/javascript" src="app/components/components/review_ratings/review-rating.service.js"></script>
+
+    <script type="text/javascript" src="app/components/frontend.module.js"></script>
+    <script type="text/javascript" src="app/components/frontend.controller.js"></script>
+    <script type="text/javascript" src="app/services/http_interceptor.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body class="{{ bodylayout}}">
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+    <div class="ui-view"></div>
+</body>
+
+</html>

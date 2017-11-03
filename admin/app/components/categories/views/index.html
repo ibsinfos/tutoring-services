@@ -1,0 +1,124 @@
+<section class="content-header">
+    <h1>All Categories</h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Categories</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List of All Categories</h3>
+                    <div class="box-tools pull-right">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-info btn-flat pull-left" ng-click="category.openSortCategoryModal()"> Sort Categories</button>
+                            </div>
+                            <div class="col-sm-5">
+                                <a ui-sref="administrator.category.create" class="btn btn-info btn-flat pull-left">Add New Category</a>
+                            </div>
+                            <!-- <div class="col-sm-7">
+                                <select ng-model="pageSize" id="pageSize" class="form-control">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                 </select>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin table-bordered" data-ng-init="category.getCategoriesList(1,'')">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 120px;">#</th>
+                                    <th>
+                                        <a ng-click="category.sort('name')">Category Name
+                                            <span ng-show="category.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!category.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <!-- <th>
+                                        <a ng-click="category.sort('parent_name')">Parent Category
+                                            <span ng-show="category.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!category.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th> -->
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="category.sort('created_at')">Created At
+                                            <span ng-show="category.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!category.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="sortType = 'category_status';sortReverse = !sortReverse">Status
+                                            <span ng-show="sortType == 'category_status' && !sortReverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="sortType == 'category_status' && sortReverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th style="width: 150px;" class="text-center">Action</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="text" ng-model="category.search.name" ng-change="category.changePage(1,category.search)" placeholder="Category Name" class="form-control" />
+                                    </td>
+                                    <!-- <td>
+                                        <input type="text" ng-model="category.search.parent_name" ng-change="category.changePage(1,category.search)" placeholder="Parent Category" class="form-control" />
+                                    </td> -->
+                                    <td>
+                                        <md-datepicker ng-model="category.search.created_at" ng-change="category.changePage(1,category.search)" md-placeholder="Date" readonly="readonly"></md-datepicker>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="category.search.status" ng-change="category.changePage(1,category.search)">
+                                            <option value="">Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">In-Active</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="button" class="btn btn-warning btn-flat" ng-click="category.reset();" value="Reset" />
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody ng-show="category.categoryList">
+                                <tr dir-paginate="(itemIndex, item) in category.categoryList | orderBy: category.sortKey:category.reverse|itemsPerPage: category.categoriesPerPage" total-items="category.totalCategories" current-page="category.pagination.current">
+                                    <td class="text-center">
+                                        <a ui-sref="administrator.category.view({id:1})">{{$index + 1}}</a>
+                                    </td>
+                                    <td>{{item.name}}</td>
+                                    <!-- <td>{{item.parent_name}}</td> -->
+                                    <td class="text-center">{{category.formatDate(item.created_at) }}</td>
+                                    <td class="text-center">
+                                        <span class="label status" ng-class="item.status == 1?'label-success':'label-warning'" ng-click="category.changeStatus(item)">{{item.status==1?'Active':'In-Active'}}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a ui-sref="administrator.category.edit({id: item.id})" class="btn btn-success btn-flat btn-sm"><i class="fa fa-edit"></i></a>
+                                            <a ng-click="category.deleteCategory(item.id,itemIndex)" class="btn btn-danger btn-flat btn-sm"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="category.changePage(newPageNumber,category.search)"></dir-pagination-controls>
+                    </div>
+
+                </div>
+                <div class="box-footer clearfix">
+                    <div class="box-tools">
+                        <div class="pull-left">
+                            <b>Total Records</b> : {{category.totalCategories}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

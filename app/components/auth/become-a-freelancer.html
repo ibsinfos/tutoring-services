@@ -1,0 +1,77 @@
+<section class="signup">
+    <form id="msform" name="msform" angular-validator-submit="auth.signUpFreelancer(auth.userInfo)" novalidate angular-validator>
+        <ul id="progressbar">
+            <li class="active">Account Setup</li>
+            <li>Skills</li>
+            <li>Personal Details</li>
+        </ul>
+        <fieldset>
+            <h2 class="fs-title">Create your account</h2>
+            <h3 class="fs-subtitle">It's quick and easy</h3>
+            <div class="form-group has-feedback">
+                <input type="email" placeholder="Email" name="email" ng-model="auth.userInfo.email" invalid-message="'Invalid Email address entered'"
+                    required-message="'Email address is required'" validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="Password" name="password" ng-model="auth.userInfo.password" validator="auth.passwordValidator(auth.userInfo.password) === true"
+                    invalid-message="auth.passwordValidator(auth.userInfo.password)" validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="Confirm Password" name="confirmpassword" ng-model="auth.userInfo.confirmpassword" validator="auth.userInfo.password === auth.userInfo.confirmpassword"
+                    validate-on="dirty" invalid-message="'Both Passwords didn\'t match!'" required/>
+            </div>
+            <input type="submit" name="next" class="action-button" ng-class="{'next':btnAccount}" value="Next" data-ng-attr-id="btnAccount"
+                ng-click="auth.stepAccount(auth.userInfo)" />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Skills</h2>
+            <h3 class="fs-subtitle">What do you do?</h3>
+            <div class="principles_group" id="principles_group">
+                <div data-ng-repeat="(key, choice) in auth.choices" style="/*border: 1px solid red;padding: 10px;*/">
+                    <select class="principles form-control" name="principles" ng-init="auth.getCategories(key);" ng-model="auth.userInfo.category[key]" ng-change="auth.getSkills(auth.userInfo.category[key], key, oldValue)"
+                        ng-options="category as category.name for category in auth.categories[key] track by category.id" ng-click="oldValue = auth.userInfo.category[key]">
+                        <option value="">Please pick a principle</option>
+                    </select>
+                    <div class="skills_wrap" ng-if="auth.skills[key].length > 0">
+                        <div id="accounting" class="skills">
+                            <label ng-repeat="skill in auth.skills[key]">
+                                <input type="checkbox" ng-click="auth.getCheckedSkills(auth.userInfo.category[key].id, skill.id, active)" ng-model="active" value="{{ skill.id }}" /> {{ skill.name }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="addmore_wrap">
+                        <div class="btn btn-danger btn-sm btn-xs" ng-if="!$first" ng-show="$last" ng-click="auth.removePrinciple(key, auth.userInfo.category[key])">
+                            <span class="glyphicon glyphicon-minus-sign"></span> remove principle
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addmore_wrap">
+                <div class="btn btn-default" ng-disabled="auth.flagAddPrinciple" ng-click="auth.flagAddPrinciple || auth.addPrinciple()"><span class="glyphicon glyphicon-plus-sign"></span> add a different principle</div>
+            </div>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="submit" name="next" class="action-button" ng-class="{'next':btnSkills}" value="Next" ng-click="auth.stepSkills(auth.userInfo)"
+            />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Personal Details</h2>
+            <h3 class="fs-subtitle">We will never sell it</h3>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="First Name" name="fname" ng-model="auth.userInfo.fname" required-message="'First Name is required'"
+                    validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="Last Name" name="lname" ng-model="auth.userInfo.lname" required-message="'Last Name is required'"
+                    validate-on="dirty" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="Phone" name="phone" ng-model="auth.userInfo.phone" />
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="Country" name="country" ng-model="auth.userInfo.country" />
+            </div>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="submit" name="submit" class="action-button" ng-class="{'submit':btnPersonal}" value="Submit" />
+        </fieldset>
+    </form>
+</section>

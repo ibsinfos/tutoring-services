@@ -1,0 +1,95 @@
+<div class="modal-body user-skills-popup">
+    <div class="active_frame">
+        <div class="close_black" ng-click="addFieldModal.close().fadeOut(300);"></div>
+        <h2><span class="glyphicon glyphicon-pencil"></span> Select your skills and expertise</h2>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Skills" ng-model="freelancer.searchText" ng-keyup="freelancer.searchSkills($event)">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                              </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div ng-if="freelancer.searchBySkill">
+                            <div id="category-chessboard" ng-if="!freelancer.currentSelectedCategory">
+                                <ul id="category_list" class="major-category-list list-unstyled">
+                                    <li ng-repeat="category in freelancer.categories" ng-click="freelancer.showSkillsboard(category)">
+                                        {{ category.name }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="category-results" class="skill-selector-category-inner" ng-if="freelancer.currentSelectedCategory">
+                                <div id="return_btn" class="major-category-nav">
+                                    <a href="javascript:void(0)" id="category-display" class="major-category-marker">{{ freelancer.currentSelectedCategory }}</a>
+                                    <a href="javascript:void(0)" class="btn btn-default btn-sm pull-right" ng-click="freelancer.showCategoryBoard()">
+                                        <span class="fa fa-chevron-left"></span> Back to Categories
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div id="slimscroll" class="available-skill">
+                                    <ul id="skill-job-list" class="available-skill-list" ng-if="freelancer.skillsByCategoryIdStatus">
+                                        <li ng-repeat="skill in freelancer.skillsByCategoryId" ng-mouseover="freelancer.open[skill.id] = true" ng-mouseleave="freelancer.open[skill.id] = false"
+                                            ng-click="freelancer.setActive(skill)" ng-class="{active: freelancer.show[skill.id] }">
+                                            {{ skill.name }} <i class="fa fa-plus pull-right" ng-show="freelancer.open[skill.id] && !freelancer.show[skill.id]"></i>
+                                            <i class="fa fa-check pull-right" ng-if="freelancer.show[skill.id]"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="available-skill-list no-skills-found" ng-if="!freelancer.skillsByCategoryIdStatus">No Skills found under <b>{{ freelancer.currentSelectedCategory }}</b></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="!freelancer.searchBySkill">
+                            <div id="category-results" class="skill-selector-category-inner">
+                                <div id="return_btn" class="major-category-nav">
+                                    <a href="javascript:void(0)" id="category-display" class="major-category-marker">Searching for: <b>{{ freelancer.searchText }}</b></a>
+                                    <a href="javascript:void(0)" class="btn btn-default btn-sm pull-right" ng-click="freelancer.showCategoryBoard()">
+                                            <span class="fa fa-chevron-left"></span> Back to Categories
+                                        </a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div id="slimscroll" class="available-skill">
+                                    <ul id="skill-job-list" class="available-skill-list" ng-if="freelancer.skillsBySearchTextStatus">
+                                        <li ng-repeat="skill in freelancer.skillsBySearchText" ng-mouseover="freelancer.open[skill.id] = true" ng-mouseleave="freelancer.open[skill.id] = false"
+                                            ng-click="freelancer.setActive(skill)" ng-class="{active: freelancer.show[skill.id] }">
+                                            {{ skill.name }} <i class="fa fa-plus pull-right" ng-show="freelancer.open[skill.id] && !freelancer.show[skill.id]"></i>
+                                            <i class="fa fa-check pull-right" ng-if="freelancer.show[skill.id]"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="available-skill-list no-skills-found" ng-if="!freelancer.skillsBySearchTextStatus">No Skills Matching: <b>{{ freelancer.searchText }}</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Your Selected Skills
+                    </div>
+                    <div class="panel-body">
+                        <form id="saveSkillForm" class="selected-skill-form">
+                            <ul id="selected-skill-list" class="selected-skill-list list-unstyled">
+                                <li ng-repeat="(skillIndex, skill) in freelancer.selectedSkills" ng-init="freelancer.selectedOpen[skill.id] = false" ng-mouseover="freelancer.selectedOpen[skill.id] = true"
+                                    ng-mouseleave="freelancer.selectedOpen[skill.id] = false">
+                                    {{ skill.name }} <i class="fa fa-times pull-right" ng-show="freelancer.selectedOpen[skill.id]"
+                                        ng-click="freelancer.removeSelectedSkill(skill, skillIndex)"></i>
+                                </li>
+                            </ul>
+                            <div class="form-group text-center">
+                                <button id="saveSkills" ng-click="freelancer.updateSkills()" class="btn btn-info selected-skill-button">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

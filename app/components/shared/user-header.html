@@ -1,0 +1,12 @@
+<div class="utils">
+    <div class="btn-account">
+        <span class="avatar">
+            <img disable-context-menu class="img-responsive" alt="" ng-if="$root.userProfilePhoto" ng-src="{{$root.userProfilePhoto}}" />
+        </span>
+        <strong class="glyphicon glyphicon-cog"></strong>
+    </div>
+    <ul class="utils_menu">
+        <li><a ui-sref="root"><span class="glyphicon glyphicon-dashboard"></span><strong>My Dashboard</strong></a></li>
+        <li><a href="javascript:void(0);" ng-click="shared.logoutUser()"><span class="glyphicon glyphicon-share"></span><strong>Sign out</strong></a></li>
+    </ul>
+</div>

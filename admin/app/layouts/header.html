@@ -1,0 +1,63 @@
+<header class="main-header">
+    <a ui-sref="administrator.dashboard" class="logo">
+        <span class="logo-mini"><b>TS</b></span>
+        <span class="logo-lg"><b>Tutoring Services</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- Notifications Menu -->
+                <li class="dropdown notifications-menu">
+                  <!-- Menu toggle button -->
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning">10</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header">You have 10 notifications</li>
+                    <li>
+                      <!-- Inner Menu: contains the notifications -->
+                      <ul class="menu">
+                        <li><!-- start notification -->
+                          <a href="#">
+                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                          </a>
+                        </li>
+                        <!-- end notification -->
+                      </ul>
+                    </li>
+                    <li class="footer"><a href="#">View all</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown user user-menu">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="../vendor/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{user.firstname}} {{user.lastname}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="../vendor/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                {{user.firstname}} {{user.lastname}}
+                                <small>{{user.role_name}}</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a ui-sref="administrator.profile" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="javascript:void(0);" class="btn btn-default btn-flat" ng-click="dashboard.logoutUser()">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

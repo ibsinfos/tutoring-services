@@ -1,0 +1,267 @@
+<main class="layout_table">
+    <section class="info layout_table_cell">
+        <user-edit-profile></user-edit-profile>
+        <div class="container-fluid">
+            <user-area></user-area>
+            <div class="tabspanel">
+                <div class="tab_item" ng-init="freelancer.getUserSkills()">
+                    <h2 class="tab_activator ">Skills <strong class="total">{{ freelancer.skillsCount }}</strong><span class="more"></span></h2>
+                    <div class="tab_content" id="skills">
+                        <div class="skillset" ng-repeat="category in freelancer.userSkills.category_details">
+                            <h3>{{category.category_name}}</h3>
+                            <ul>
+                                <li ng-repeat="skill in freelancer.userSkills.skill_details[category.category_id]">{{skill.name}}</li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="actions">
+                            <span class="btn btn-default" ng-click="freelancer.openSkillsModal();"><span class="glyphicon glyphicon-pencil"></span>                            edit skills</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="tab_item">
+                    <h2 class="tab_activator ">Reviews <strong class="total">2</strong><span class="more"></span></h2>
+                    <div class="tab_content" id="reviews">
+                        <div class="review">
+                            <div class="star_ratings">
+                                <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <div class="title">Amazing!</div>
+                            <div class="desc">"Really impressed with the knowledge and experience and out of the box thinking. Always at the
+                                end of the phone when needed and nothing seems to much trouble."</div>
+                            <div class="reviewee">CAPITA</div>
+                        </div>
+                        <div class="review">
+                            <div class="star_ratings">
+                                <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <div class="title">Could be better</div>
+                            <div class="desc">"Always at the end of the phone when needed and nothing seems to much trouble."</div>
+                            <div class="reviewee">FORD</div>
+                        </div>
+                    </div>
+                </div> -->
+                <user-review-rating-list title="Received" user-id="$root.user.id" type="1"></user-review-rating-list>
+
+                <user-review-rating-list title="Given" user-id="$root.user.id" type="2"></user-review-rating-list>
+                
+                <div class="tab_item" ng-init="freelancer.getBankDetails()">
+                    <h2 class="tab_activator">Bank Details <span class="more"></span></h2>
+                    <div class="tab_content" id="bankdetails">
+                        <p>We need this info so we can deposit your fees</p>
+                        <div ng-if="freelancer.bankInfo">
+                            <p class="label">Bank Name</p>
+                            <p class="entry">{{freelancer.bankInfo.bank_name}}</p>
+                            <p class="label">Your branch sort code</p>
+                            <p class="entry">{{freelancer.bankInfo.bank_code}}</p>
+                            <p class="label">Your account number</p>
+                            <p class="entry">{{freelancer.bankInfo.bank_account_number}}</p>
+                            <p class="label">IBAN</p>
+                            <p class="entry">{{freelancer.bankInfo.bank_iban}}</p>
+                        </div>
+                        <div class="actions">
+                            <span class="btn btn-default" ng-click="freelancer.openBankDetailsModal();" ng-if="freelancer.bankInfo"><span class="glyphicon glyphicon-pencil"></span>                            edit bank details</span>
+                            <span class="btn btn-default" ng-click="freelancer.openBankDetailsModal();" ng-if="!freelancer.bankInfo"><span class="glyphicon glyphicon-plus"></span>                            add bank details</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content layout_table_cell">
+
+        <div class="find_projects">
+            <div class="tabspanel">
+                <div class="tab_item">
+                    <h2 class="tab_activator"><span class="glyphicon glyphicon-flag"></span> Notifications</h2>
+                    <div class="tab_content">
+                        <div class="notification_settings">
+                            <form>
+                                <span>Notify me when a new project is added that matches</span>
+                                <select class="form-control">
+										<option value="100">at least 100%</option>
+										<option value="90">at least 90%</option>
+										<option value="80">at least 80%</option>
+										<option value="70">at least 70%</option>
+										<option value="60">at least 60%</option>
+									</select>
+                                <span>of my skillset</span>
+                            </form>
+                        </div>
+                        <h3>You may be interested in the following projects</h3>
+                        <div class="potential panel panel-default">
+                            <div class="info">
+                                <h4 class="title">New corporate website</h4>
+                                <p class="employer"><a href="/prolancer_view_profile_employer.php">Vodafone</a></p>
+                                <div class="project_completion_rate" data-toggle="tooltip" title="">80%</div>
+                                <p class="budget">$2,000</p>
+                                <p class="urgency">Start in 7 days</p>
+                                <div class="actions">
+                                    <button class="btn btn-primary btn_talk_to_freelancer"><span class="glyphicon glyphicon-comment"></span> Talk</button>
+                                    <button class="btn btn-primary "> Bid</button>
+                                    <button class="btn btn-default "> Reject</button>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <h4>Skillmatch</h4>
+                                <div class="skillmatch">100%</div>
+                                <div class="skillrequested">
+                                    <ul>
+                                        <li>Photoshop</li>
+                                        <li>HTML 5</li>
+                                        <li>CSS</li>
+                                        <li>PHP</li>
+                                        <li>Javascript</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_item">
+                    <h2 class="tab_activator"><span class="glyphicon glyphicon-search"></span> Search for a new project</h2>
+                    <div class="tab_content" data-ng-init="freelancer.getCategories();freelancer.getUrgency();freelancer.getPercentage()">
+                        <h3>Looking for something to work on?</h3>
+                        <p>Use the form below to make a search</p>
+                        <form>
+                            <fieldset>
+                                <div class="form-group">
+                                    <select ng-if='true' class="form-control" name="primaryCat" ng-model="freelancer.search.category">
+                                        <option value="">Please select an area</option>
+                                        <option value="{{item.id}}" ng-repeat="item in freelancer.categories">{{item.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select ng-if='true' class="form-control" name="budget" ng-model="freelancer.search.budgetType" ng-change="freelancer.getBudgets(freelancer.search.budgetType)">
+                                        <option value="">Please select budget type</option>
+                                        <option value="1">Project Basis</option>
+                                        <option value="2">Hourly Basis</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select ng-if='true' class="form-control" name="budget" ng-model="freelancer.search.budget">
+                                        <option value="">Please select a budget</option>
+                                        <option value="{{item.id}}" ng-repeat="item in freelancer.budgetRange">{{item.range}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select ng-if='true' class="form-control" name="urgency" ng-model="freelancer.search.urgency">
+                                        <option value="">Please select urgency</option>
+                                        <option value="{{item.id}}" ng-repeat="item in freelancer.urgencyRange">{{item.range}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select ng-if='true' class="form-control" name="percentage" ng-model="freelancer.search.percentage">
+                                        <option value="">Please select skillmatch</option>
+                                        <option value="{{item.percentage}}" ng-repeat="item in freelancer.percentage">{{item.value}}</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <button class="btn btn-primary" ng-click="freelancer.searchProject(freelancer.search)"><span class="glyphicon glyphicon-search"></span> search now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="projects">
+            <h1>My Projects</h1>
+            <div class="tabspanel">
+                <!-- <div class="tab_item project">
+                    <h2 class="tab_activator "><span class="meter" data-toggle="tooltip" title="33% complete"><em></em><span style="width: 33%"></span></span>
+                        <strong>FORD motorcompany website</strong> <span class="refid">/123453445</span></h2>
+                    <div class="tab_content">
+
+                        <div class="panel panel-default project_info">
+                            <div class="company"><span>Project Owner</span> <a href="prolancer_view_profile_employer.php">FORD</a> <span class="pull-right btn btn-default btn_add_employer_review"><strong class="glyphicon glyphicon-star"></strong> review</span></div>
+                            <div class="startdate"><span>Start Date</span> 01 January 2017 <em>(46 days ago)</em></div>
+                            <div class="value"><span>value</span> $1,200</div>
+                            <div class="hours"><span>Total Agreed Hours</span> 120</div>
+                            <div class="paymentmethod"><span>Payment Method</span> On Completion</div>
+                            <div class="actions">
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> contact</a>
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> view profile</a>
+                                <br />
+                                <br />
+                                <span class="btn btn-default btn_file_complaint" data-toggle="tooltip" title="Not happy? File a complaint"><span class="glyphicon glyphicon-thumbs-down"></span>                                Dispute project</span>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default project_tasks">
+                            <h3><strong>33%</strong> towards completion</h3>
+                            <h4>Tasks</h4>
+                            <div class="tasks">
+                                <ul>
+                                    <li class="completed" data-toggle="tooltip" title="closed by client">Framework</li>
+                                    <li class="completed" data-toggle="tooltip" title="closed by client">Design</li>
+                                    <li>HTML/CSS</li>
+                                    <li>Template Creation</li>
+                                    <li>Coding</li>
+                                    <li>Q&A</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="panel panel-default project_collateral">
+                            <h3>Files</h3>
+                            <p><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Somefilename.jpg</a></p>
+                            <p><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Somefilename2.pdf</a></p>
+                            <p><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Somefilename3.jpg</a></p>
+                        </div>
+
+                        <div class="panel panel-default project_worklog">
+                            <h3>Worklog</h3>
+                            <div class="worklog_entry">
+                                <h4>Week 1</h4>
+                                <div class="desc">
+                                    I have completed the Framework task. You can see them on http://mydev.mysite.com/framework
+                                </div>
+                                <div class="uploaded_files">
+                                    <div class="uploaded_file"><a href="#" class="btn btn-default" data-toggle="tooltip" title="download file"><span class="glyphicon glyphicon-cloud-download"></span> Some_Filename.jpg</a>                                        <span data-toggle="tooltip" title="delete file" class="glyphicon glyphicon-remove-sign"></span></div>
+                                    <div class="uploaded_file"><a href="#" class="btn btn-default" data-toggle="tooltip" title="download file"><span class="glyphicon glyphicon-cloud-download"></span> Some_other_Filename.jpg</a>                                        <span data-toggle="tooltip" title="delete file" class="glyphicon glyphicon-remove-sign"></span></div>
+                                </div>
+                                <div class="actions">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Add a file</label>
+                                            <input type="file" class="form-control" style="display:inline-block; width:auto" />
+                                            <button type="submit" class="btn btn-primary">upload</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="worklog_entry">
+                                <h4>Week 2</h4>
+                                <div class="desc">
+                                    I have completed the Design task. You can see them on http://mydev.mysite.com/design
+                                </div>
+                                <div class="uploaded_files">
+                                    <div class="uploaded_file"><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Some_Filename_01.jpg</a>                                        </div>
+                                    <div class="uploaded_file"><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Some_other_Filename_02.jpg</a></div>
+                                </div>
+                                <div class="actions">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Add a file</label>
+                                            <input type="file" class="form-control" style="display:inline-block; width:auto" />
+                                            <button type="submit" class="btn btn-primary">upload</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <span class="btn btn-default btn_add_worklog_entry"><span class="glyphicon glyphicon-plus-sign"></span>                                Add worklog entry</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</main>

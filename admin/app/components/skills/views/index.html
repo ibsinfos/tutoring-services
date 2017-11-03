@@ -1,0 +1,124 @@
+<section class="content-header">
+    <h1>All Skills</h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Skills</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List of All Skills</h3>
+                    <div class="box-tools pull-right">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <a ui-sref="administrator.skill.create" class="btn btn-info btn-flat pull-left" id="test">Add New Skill</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin table-bordered" data-ng-init="skill.getSkillsList(1,'')">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 120px;">#</th>
+                                    <th>
+                                        <a ng-click="skill.sort('name')">Skill Name
+                                            <span ng-show="skill.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!skill.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a ng-click="skill.sort('name')"> Category
+                                            <span ng-show="skill.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!skill.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <!-- <th>
+                                        <a ng-click="skill.sort('name')">Sub Category
+                                            <span ng-show="skill.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!skill.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th> -->
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="skill.sort('created_at')">Created At
+                                            <span ng-show="skill.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!skill.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="skill.sort('created_at')">Status
+                                            <span ng-show="skill.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!skill.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th style="width: 150px;" class="text-center">Action</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="text" ng-model="skill.search.name" ng-change="skill.changePage(1,skill.search)" placeholder="Skill Name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="skill.search.parent_cat" ng-change="skill.changePage(1,skill.search)" placeholder="Parent Category" class="form-control" />
+                                    </td>
+                                    <!-- <td>
+                                        <input type="text" ng-model="skill.search.sub_cat" ng-change="skill.changePage(1,skill.search)" placeholder="Sub Category" class="form-control" />
+                                    </td> -->
+                                    <td>
+                                        <md-datepicker ng-model="skill.search.created_at" ng-change="skill.changePage(1,skill.search)" md-placeholder="Date" readonly="readonly"></md-datepicker>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="skill.search.status" ng-change="skill.changePage(1,skill.search)">
+                                            <option value="">Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">In-Active</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="button" class="btn btn-warning btn-flat" ng-click="skill.reset();" value="Reset" />
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody ng-show="skill.skillList">
+                                <tr dir-paginate="(itemIndex, item) in skill.skillList | orderBy: skill.sortKey:skill.reverse|itemsPerPage: skill.skillsPerPage" total-items="skill.totalSkills" current-page="skill.pagination.current">
+                                    <td class="text-center">
+                                        <a>{{$index + 1}}</a>
+                                    </td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.parent_name}}</td>
+                                    <!-- <td>{{item.sub_cat_name}}</td> -->
+                                    <td class="text-center">{{skill.formatDate(item.created_at) }}</td>
+                                    <td class="text-center">
+                                        <span class="label status" id="status-{{item.id}}" ng-class="item.status == 1?'label-success':'label-warning'" ng-click="skill.changeStatus(item)">{{item.status==1?'Active':'In-Active'}}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a ui-sref="administrator.skill.edit({id: item.id})" class="btn btn-success btn-flat btn-sm"><i class="fa fa-edit"></i></a> &nbsp;
+                                            <a ng-click="skill.deleteSkill(item.id,itemIndex)" class="btn btn-danger btn-flat btn-sm"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="skill.changePage(newPageNumber,skill.search)"></dir-pagination-controls>
+                    </div>
+
+                </div>
+                <div class="box-footer clearfix">
+                    <div class="box-tools">
+                        <div class="pull-left">
+                            <b>Total Records</b> : {{skill.totalSkills}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

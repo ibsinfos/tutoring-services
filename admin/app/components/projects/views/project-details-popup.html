@@ -1,0 +1,40 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="project.projectModal.close()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Project Details</h4>
+        </div>
+        <div class="modal-body">
+            <div class="box">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>Project Owner</td>
+                    <td>{{project.projectDetails.project.firstname + " " + project.projectDetails.project.lastname}}</td>
+                  </tr>
+                  <tr>
+                    <td>Project Name</td>
+                    <td>{{project.projectDetails.project.name}}</td>
+                  </tr>
+                  <tr>
+                      <td>Project Description</td>
+                      <td>{{project.projectDetails.project.description}}</td>
+                  </tr>
+                  <tr>
+                      <td>Category</td>
+                      <td>{{project.projectDetails.project.category_name}}</td>
+                  </tr>
+                  <tr ng-if="project.projectDetails.tasks.length > 0">
+                      <td>Tasks</td>
+                      <td><span ng-repeat="item in project.projectDetails.tasks">{{item.name}},</span></td>
+                  </tr>
+                  
+              </tbody></table>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-click="project.changeStatus(project.projectDetails.project)" class="btn btn-success {{disableApprove}}"><i class="fa fa-check" aria-hidden="true"></i> Approve</button>
+            <button type="button" ng-click="project.changeStatus(project.projectDetails.project)" class="btn btn-danger {{disabled}}"><i class="fa fa-times" aria-hidden="true"></i> Disapprove</button>
+        </div>
+    </div>
+</div>

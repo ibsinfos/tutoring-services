@@ -1,0 +1,153 @@
+<div class="container" data-ng-init="project.getProjectDetails(project.project_slug);">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="bid-popup">
+                <h2>{{project.projectDetail.project_name}}</h2>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <ul class="list-inline">
+                            <li>
+                                <p>Bids</p>
+                                <div class="text-red">{{project.projectBids.length}}</div>
+                            </li>
+                            <li>
+                                <p>Avg Bid</p>
+                                <div class="text-red">{{project.projectDetail.currency_symbol}}{{project.projectDetail.avgbid}}</div>
+                            </li>
+                            <li>
+                                <p>Project Budget</p>
+                                <div class="text-red">{{project.projectDetail.currency_symbol}}{{project.projectDetail.range_from}} - {{project.projectDetail.currency_symbol}}{{project.projectDetail.range_to}}</div>
+                            </li>
+                        </ul>
+                        <ul class="list-inline pull-right">
+                            <li class="text-green">
+                                <p>{{project.daysCount}} days, {{project.hoursCount}} hours left</p>
+                                <div><b>OPEN</b></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <button class="btn btn-primary btn-lg pull-right" ng-click="project.bidonthis()" ng-if="project.bidNow && project.bidNowForm">Pitch on this Project</button>
+                        <div class="form-group">
+                            <p class="bid-heading">Project Description</p>
+                            <div>{{project.projectDetail.project_description}}</div>
+                        </div>
+                        <div class="form-group">
+                            <p class="bid-heading">About the employer</p>
+                            <div><b>{{project.projectDetail.first_name}} {{project.projectDetail.last_name}}</b></div>
+                        </div>
+                        <div class="form-group">
+                            <p class="bid-heading">Skills required</p>
+                            <div class="skillrequested">
+                                <ul class="list-inline single-skill">
+                                    <li ng-repeat="skill in project.projectSkills track by $index">{{skill}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group report-project text-right">
+                            <p class="text-red"><a ng-click="project.openReportAbuseModal(project.projectDetail);">Report Project</a></p>
+                        </div>
+                        <div class="form-group" ng-if="!project.bidNow && project.bidNowForm">
+                            <hr/>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form id="proposalForm" name="proposalForm" angular-validator-submit="project.createBid(project.proposalForm)" novalidate
+                                        angular-validator>
+                                        <fieldset>
+                                            <legend>Your proposal will be updated as you complete each of the form steps below.</legend>
+                                            <table class="borderless">
+                                                <tr>
+                                                    <td><b>Your Bid:</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">{{project.projectDetail.currency_symbol}}</span>
+                                                            <input type="text" class="form-control" name="bidAmount" ng-model="project.proposalForm.bidAmount" autofocus="" validate-on="dirty"
+                                                                required>
+                                                            <span class="input-group-addon">{{project.projectDetail.currency_name}}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Deliver in:</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="deliveryDays" ng-model="project.proposalForm.deliveryDays" validate-on="dirty"
+                                                                required>
+                                                            <span class="input-group-addon">Days</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend>Summarise your bid for this project in your own words</legend>
+                                            <textarea class="form-control" name="summary" placeholder="Bid Summary" ng-model="project.proposalForm.summary" required-message="'Bid Summary is required'"
+                                                validate-on="dirty" required></textarea>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend>Describe your relevant skills and experience for this project</legend>
+                                            <textarea class="form-control" name="skillsSummary" placeholder="Relevant skills/experience" ng-model="project.proposalForm.skillsSummary"
+                                                required-message="'Relevant skills/experience is required'" validate-on="dirty"
+                                                required></textarea>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend>Propose a list of key tasks and deliverables as a series of milestones</legend>
+                                            <div ng-repeat="item in project.choices track by $index">
+                                                <div class="form-inline">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">{{project.projectDetail.currency_name}}</span>
+                                                        <input class="form-control" name="amount{{$index}}" type="number" min="1" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="project.proposalForm.amount[$index]"
+                                                            required-message="'Amount is required'" validate-on="dirty" required>
+                                                    </div>
+                                                    <input class="form-control" name="description{{$index}}" type="text" placeholder="Description" ng-maxlength="100" ng-model="project.proposalForm.description[$index]"
+                                                        required-message="'Description is required'" validate-on="dirty" required>
+                                                    <a ng-click="project.removeTask()" ng-if="!$first" ng-show="$last"><i class="fa fa-times fa-2x text-red"></i></a>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm" type="button" ng-click="project.addTasks()">+ Add</button>
+                                        </fieldset>
+                                        <fieldset class="ProposalForm-question">
+                                            <legend>Ask the employer a question (optional)</legend>
+                                            <textarea class="form-control" name="employerQuestion" placeholder="Question for Employer (optional)" ng-model="project.proposalForm.employerQuestion"></textarea>
+                                        </fieldset>
+                                        <button class="btn btn-primary" type="submit">Place Bid</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <hr/>
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-sm-10">Freelancers Bidding({{project.projectBids.length}})</div>
+                                        <div class="col-sm-2">BID({{project.projectDetail.currency_name}})</div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row bid-row" ng-repeat="bid in project.projectBids">
+                                        <div class="col-sm-2">
+                                            <img src="/assets/front/img/avatar.png" class="img-responsive" />
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <a>{{bid.firstname}} {{bid.lastname}}</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h3 class="bid-amount">{{project.projectDetail.currency_symbol}}{{bid.bid_amount}}</h3>
+                                            in {{bid.deliver_days}} days
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-danger text-center" ng-if="project.projectBids.length == 0">
+                                        No Bids have found.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

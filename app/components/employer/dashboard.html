@@ -1,0 +1,262 @@
+<div class="profile employer_dashboard">
+    <div class="panel panel-default panel-master">
+        <main class="layout_table">
+            <section class="info layout_table_cell">
+                <user-edit-profile></user-edit-profile>
+                <div class="container-fluid">
+                    <user-area></user-area>
+                    <div class="tabspanel">
+                        <!-- <div class="tab_item">
+                            <h2 class="tab_activator ">Reviews Received <strong class="total">2</strong><span class="more"></span></h2>
+                            <div class="tab_content" id="reviews">
+                                <div class="review">
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 99%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                    <div class="title">Amazing!</div>
+                                    <div class="desc">"Really impressed with the knowledge and experience and out of the box thinking. Always
+                                        at the end of the phone when needed and nothing seems to much trouble."
+                                    </div>
+                                    <div class="reviewee">CAPITA</div>
+                                </div>
+                                <div class="review">
+                                    <div class="star_ratings">
+                                        <div class="star_ratings_top" style="width: 50%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                    <div class="title">Could be better</div>
+                                    <div class="desc">"Always at the end of the phone when needed and nothing seems to much trouble."</div>
+                                    <div class="reviewee">FORD</div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <user-review-rating-list title="Received" user-id="$root.user.id" type="1"></user-review-rating-list>
+
+                        <user-review-rating-list title="Given" user-id="$root.user.id" type="2"></user-review-rating-list>
+                    </div>
+                </div>
+            </section>
+            <section class="content layout_table_cell">
+                <div class="find_projects">
+                    <div class="tabspanel">
+                        <div class="tab_item" data-ng-init="employer.getBiddedProjects();">
+                            <h2 class="tab_activator"><span class="glyphicon glyphicon-flag"></span> Notifications <strong>You have <em>{{employer.biddedProjects.length}}</em> notifications</strong></h2>
+                            <div class="tab_content">
+                                <h3>These people are interested in your projects</h3>
+                                <div class="potential panel panel-default" ng-repeat="singleProject in employer.biddedProjects">
+                                    <div class="close btn btn-default" ng-click="employer.hideThisBid(singleProject.bidder_id, $event)">hide this</div>
+                                    <div class="info">
+                                        <h4 class="title">{{singleProject.first_name}} {{singleProject.last_name}} <a ui-sref="root.profile({slug: singleProject.user_slug})"
+                                                class="btn btn-default btn-small pull-right">view profile</a></h4>
+                                        <div class="status"><span class="glyphicon glyphicon-star"></span> Prolancer</div>
+                                        <div class="star_ratings" data-toggle="tooltip" title="84% positive feedback">
+                                            <div class="star_ratings_top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                            <div class="star_ratings_bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        </div>
+                                        <div class="rating_total btn_view_freelancer_reviews">(2 reviews)</div>
+                                        <p class="budget">Hourly rate: ${{singleProject.hourly_rate}} <span class="message">The budget for this project is <strong>{{singleProject.currency_symbol}}{{singleProject.bid_amount}}</strong>. This will give you <strong>{{singleProject.deliver_days * 8}} hours</strong> of Sam's time. </span></p>
+                                        <div class="actions">
+                                            <button class="btn btn-primary" ng-click="employer.openTalkToBidderModal(singleProject, false);"><span class="glyphicon glyphicon-comment"></span> Talk</button>
+                                            <button class="btn btn-secondary" ng-click="employer.openHireBidderModal(singleProject);"><span class="glyphicon glyphicon-ok-sign"></span> Hire </button>
+                                            <button class="btn btn-default" ng-click="employer.openDeclineOfferModal(singleProject);"><span class="glyphicon glyphicon-thumbs-down"></span> Decline </button>
+                                        </div>
+                                    </div>
+                                    <div class="skills" data-ng-init="employer.customSplitString(singleProject.skill_names, singleProject.bidder_id, singleProject.prolancer_skills)">
+                                        <div class="project_interested">
+                                            <h4><span class="freelancer_name">{{singleProject.first_name}} is interested in</h4>
+                                            <p>{{singleProject.name}}</p>
+                                        </div>
+                                        <h4>Skillmatch <span class="skillmatch">{{employer.projectSkillsPercentage[singleProject.bidder_id]}}%</span></h4>
+                                            <span class="meter meterfull" data-toggle="tooltip" title="" data-original-title="{{employer.projectSkillsPercentage[singleProject.bidder_id]}}% skills match"><em></em>
+                                                <span style="width: {{employer.projectSkillsPercentage[singleProject.bidder_id]}}%"></span>
+                                            </span>
+                                            <div class="skillrequested">
+                                                <ul>
+                                                    <li ng-repeat="skill in employer.projectSkills[singleProject.bidder_id] track by $index">{{skill}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="employer.projects" class="projects">
+                        <h1>My Projects</h1>
+                        <div class="tabspanel">
+                            <div class="tab_item project" ng-repeat="item in employer.projects">
+                                <h2 class="tab_activator "><span class="meter" data-toggle="tooltip" title="0% complete"><em></em><span style="width: 0%"></span></span>
+                                    <strong>{{item.name}}</strong><span class="refid"> / </span>{{item.reference_number}}
+                                </h2>
+                                <div class="tab_content">
+                                    <div class="panel panel-default project_info">
+                                        <div class="company"><span>Project Owner</span>{{ $root.user.firstname + ' ' + $root.user.lastname }}
+                                        </div>
+                                        <div class="startdate"><span>Start Date</span>
+                                            <p ng-if="item.start_date">{{item.start_date}} <em>({{item.project_days}} days ahead)</em></p>
+                                            <p ng-if="!item.start_date"></p>
+                                        </div>
+                                        <div class="value"><span>Budget Estimate</span>
+                                            <p ng-if="item.total_project_cost">${{item.total_project_cost}}</p>
+                                            <p ng-if="!item.total_project_cost">$0</p>
+                                        </div>
+                                        <div class="paymentmethod"><span>payment method</span>
+                                            <p ng-if="item.payment_type == 1">On Weekly</p>
+                                            <p ng-if="item.payment_type == 2">On Completion</p>
+                                        </div>
+                                        <div class="freelancerassigned"><span>Freelancer</span>
+                                            <p ng-if="item.freelancer_id">{{item.freelancer_firstname + ' ' + item.freelancer_lastname}}
+                                                <add-user-review-rating project-id="item.id" receiver-id="item.freelancer_id" project-name="item.name" action="add" type="1"></add-user-review-rating>
+                                            </p>
+                                            <p ng-if="!item.freelancer_id">N/A</p>
+                                        </div>
+                                        <div class="actions" ng-if="!item.freelancer_id">
+                                            <p>Please assign a freelancer to this project to start</p>
+                                        </div>
+                                        <div class="actions" ng-if="item.freelancer_id">
+                                            <a class="btn btn-default" ng-click="employer.openTalkToBidderModal(item, true);">
+                                                <span class="glyphicon glyphicon-envelope"></span> contact prolancer
+                                            </a>
+                                            <br>
+                                            <br>
+                                            <span class="btn btn-primary" ng-click="employer.openReleasePaymentModal(item, item.payment_type)">
+                                                <span class="glyphicon glyphicon-usd"></span>                                            Release stage payment
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <span class="btn btn-default" ng-click="employer.openAddFileComplaintModal(item.reference_number, item.id);" data-toggle="tooltip"
+                                                title="Not happy? File a complaint"><span class="glyphicon glyphicon-thumbs-down"></span>                                            Dispute project</span>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default project_tasks">
+                                        <h3><strong>0%</strong> towards completion</h3>
+                                        <h4>Tasks</h4>
+                                        <div class="tasks" ng-if="!item.tasks">
+                                            <p class="large">You have no tasks yet.</p>
+                                            <p><button type="button" class="btn btn-primary" ng-click="employer.openTasksModal(item.id);"><span class="glyphicon glyphicon-plus-sign"></span> Add your first task</button></p>
+                                        </div>
+                                        <div class="tasks" ng-if="item.tasks">
+                                            <form class="manage_tasks">
+                                                <label data-toggle="tooltip" title="tick the box to close this task" ng-repeat="task in item.tasks"><input class="" type="checkbox" /> {{task.name}}</label>
+                                            </form>
+                                        </div>
+                                        <div class="message"><strong>Note:</strong> Changes will not be retained unless you save</div>
+                                        <div class="actions">
+                                            <button type="button" class="btn btn-default" ng-click="employer.openTasksModal(item.id);"><span class="glyphicon glyphicon-wrench"></span> Add/remove tasks</button>
+                                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> save changes</a>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary pull-right" ng-click="employer.openEditProjectModal(item.id);"><span class="glyphicon glyphicon-edit"></span> Edit Project </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find_projects">
+                        <div class="tabspanel">
+                            <div class="tab_item">
+                                <h2 class="tab_activator"><span class="glyphicon glyphicon-plus-sign"></span> Create a new project</h2>
+                                <div class="tab_content">
+                                    <h3>what do you want to create?</h3>
+                                    <p>Use the form below to create a new project</p>
+                                    <form id="msform" novalidate angular-validator angular-validator-submit='employer.saveProject()' enctype="multipart/form-data">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="formtitle"><span class="glyphicon glyphicon-pencil"></span> Name your project</p>
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" name="name" ng-model="employer.projectForm.name" validate-on='dirty' required=""
+                                                        />
+                                                    </div>
+                                                    <p class="formtitle"><span class="glyphicon glyphicon-pencil"></span> Add a description</p>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control textarea_project_description" name="description" ng-model="employer.projectForm.description"
+                                                            validate-on='dirty' required=""></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="formtitle"><span class="glyphicon glyphicon-screenshot"></span> Define the project
+                                                    </p>
+
+                                                    <div class="form-group">
+                                                        <select ng-if='true' class="form-control" name="primaryCat" ng-model="employer.projectForm.primaryCat">
+                                          <option value="">Please select an area</option>
+                                          <option value="{{cat.id}}" ng-repeat="cat in employer.primaryCat">{{cat.name}}</option>
+                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <select ng-if='true' class="form-control" name="budget" ng-model="employer.projectForm.budgetType" validate-on='dirty' required=""
+                                                            ng-change="employer.getBudgets(employer.projectForm.budgetType)">
+                                          <option value="">Please select budget type</option>
+                                          <option value="1">Project Basis</option>
+                                          <option value="2">Hourly Basis</option>
+                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <select ng-if='true' class="form-control" name="budget" ng-model="employer.projectForm.budget" validate-on='dirty' required="">
+                                          <option value="">Please select a budget</option>
+                                          <option value="{{item.id}}" ng-repeat="item in employer.budgetRange">{{item.range}}</option>
+                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <select ng-if='true' class="form-control" name="urgency" ng-model="employer.projectForm.urgency" validate-on='dirty' required="">
+                                          <option value="">Please select urgency</option>
+                                          <option value="{{item.id}}" ng-repeat="item in employer.urgencyRange">{{item.range}}</option>
+                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <p class="formtitle"><span class="glyphicon glyphicon-file"></span> Upload a specification</p>
+                                                        <input type="file" class="form-control" ngf-select="uploadFiles($files, $invalidFiles)" multiple ng-model="picFile" name="file"
+                                                            ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <p class="formtitle">Please select skills you need</p>
+                                            <div data-ng-repeat="(key, choice) in employer.choices">
+                                                <div class="principles_group" id="principles_group">
+                                                    <select ng-if="true" class="principles form-control" name="skill" validate-on='dirty' required="" ng-model="employer.projectForm.category[key]"
+                                                        ng-change="employer.getSkills(employer.projectForm.category[key], key, oldValue)"
+                                                        ng-options="category as category.name for category in employer.categories[key] track by category.id"
+                                                        ng-click="oldValue = employer.projectForm.category[key]"> 
+                                           <option value="">Please pick a principle</option>
+                                       </select>
+                                                </div>
+                                                <div class="skills_wrap" ng-if="employer.skills[key].length > 0">
+                                                    <div id="accounting" class="skills">
+                                                        <label ng-repeat="skill in employer.skills[key]">
+                                             <input type="checkbox" ng-click="employer.getCheckedSkills(employer.projectForm.category[key].id, skill.id, active)" ng-model="active" value="{{ skill.id }}" /> {{ skill.name }}
+                                          </label>
+                                                    </div>
+                                                </div>
+                                                <div class="addmore_wrap">
+                                                    <div class="btn btn-danger btn-sm btn-xs" ng-if="!$first" ng-show="$last" ng-click="employer.removePrinciple(key, employer.projectForm.category[key])">
+                                                        <span class="glyphicon glyphicon-minus-sign"></span> remove principle
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="addmore_wrap">
+                                                <div class="btn btn-default" ng-disabled="employer.flagAddPrinciple" ng-click="employer.flagAddPrinciple || employer.addPrinciple()"><span class="glyphicon glyphicon-plus-sign"></span> add a different principle
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <br />
+                                        <div class="actions">
+                                            <button class="btn btn-primary" type="submit" name="submit">
+                                <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;create project!</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </main>
+        </div>
+    </div>
+</div>

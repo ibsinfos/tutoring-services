@@ -1,0 +1,44 @@
+<div class="modal-body">
+    <div class="col-xs-12 col-sm-12 col-md-12 active_frame">
+        <div class="close_black" ng-click="hireBidderModal.close()"></div>
+        <h2>
+            <span class="glyphicon glyphicon-thumbs-up"></span> Hire <span class="freelancer_name">{{employer.singleProject.first_name}}</span>            to work on this project
+        </h2>
+        <p class="message_green">You are about to hire this freelancer to work on <span class="project_name">{{employer.singleProject.name}}</span></p>
+        <div class=" payment_tutorial_steps">
+            <div class="payment_tutorial_step">
+                <div class="tut_number">1</div>
+                <div class="tut_info">
+                    <p class="large">Select payment method</p>
+                    <p class="medium">Are you releasing payments in weekly installments or will you release the full amount upon completion?</p>
+                </div>
+            </div>
+            <div class="payment_tutorial_step">
+                <div class="tut_number">2</div>
+                <div class="tut_info">
+                    <p class="large">Pay the value of the project to prolancework.com</p>
+                    <p class="medium">We will keep that safe in our bank and will not release it to the freelenacer.</p>
+                </div>
+            </div>
+            <div class="payment_tutorial_step">
+                <div class="tut_number">3</div>
+                <div class="tut_info">
+                    <p class="large">Begin collaboration with your freelancer</p>
+                    <p class="medium">Use your dashboard to keep track of tasks and overall project progress.</p>
+                </div>
+            </div>
+            <div class="payment_tutorial_step">
+                <div class="tut_number">4</div>
+                <div class="tut_info">
+                    <p class="large">Release funds</p>
+                    <p class="medium">When you are happy with the progress, use the "release stage payment" button on your project card. We
+                        will do the rest.</p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <a ui-sref="root.payWeekly({projectSlug: employer.singleProject.slug, userSlug: employer.singleProject.user_slug})" class="btn btn-primary">I will pay weekly</a>
+        <a ui-sref="root.payComplete({projectSlug: employer.singleProject.slug, userSlug: employer.singleProject.user_slug})" class="btn btn-primary">I will pay on project completion</a>
+    </div>
+</div>

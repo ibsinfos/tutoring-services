@@ -1,0 +1,114 @@
+<section class="content-header">
+    <h1>All Packages</h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Packages</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List of All Packages</h3>
+                    <div class="box-tools pull-right">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <a ui-sref="administrator.package.create" class="btn btn-info btn-flat pull-left">Add New Package</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin table-bordered" data-ng-init="package.getPackagesList(1,'')">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 120px;">#</th>
+                                    <th>
+                                        <a ng-click="package.sort('name')">Package Name
+                                            <span ng-show="package.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!package.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a ng-click="package.sort('amount')"> Amount
+                                            <span ng-show="package.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!package.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="package.sort('created_at')">Created At
+                                            <span ng-show="package.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!package.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center" style="width: 120px;">
+                                        <a ng-click="package.sort('created_at')">Status
+                                            <span ng-show="package.reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="!package.reverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th style="width: 150px;" class="text-center">Action</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="text" ng-model="package.search.name" ng-change="package.changePage(1,package.search)" placeholder="Package Name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="package.search.amount" ng-change="package.changePage(1,package.search)" placeholder="Amount" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <md-datepicker ng-model="package.search.created_at" ng-change="package.changePage(1,package.search)" md-placeholder="Date" readonly="readonly"></md-datepicker>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="package.search.status" ng-change="package.changePage(1,package.search)">
+                                            <option value="">Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">In-Active</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="button" class="btn btn-warning btn-flat" ng-click="package.reset();" value="Reset" />
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody ng-show="package.packageList">
+                                <tr dir-paginate="(itemIndex, item) in package.packageList | orderBy: package.sortKey:package.reverse|itemsPerPage: package.packagesPerPage" total-items="package.totalPackages" current-page="package.pagination.current">
+                                    <td class="text-center">
+                                        <a>{{$index + 1}}</a>
+                                    </td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td class="text-center">{{package.formatDate(item.created_at) }}</td>
+                                    <td class="text-center">
+                                        <span class="label status" id="status-{{item.id}}" ng-class="item.status == 1?'label-success':'label-warning'" ng-click="package.changeStatus(item)">{{item.status==1?'Active':'In-Active'}}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a ui-sref="administrator.package.edit({id: item.id})" class="btn btn-success btn-flat btn-sm"><i class="fa fa-edit"></i></a> &nbsp;
+                                            <a ng-click="package.deletePackage(item.id,itemIndex)" class="btn btn-danger btn-flat btn-sm"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="package.changePage(newPageNumber,package.search)"></dir-pagination-controls>
+                    </div>
+
+                </div>
+                <div class="box-footer clearfix">
+                    <div class="box-tools">
+                        <div class="pull-left">
+                            <b>Total Records</b> : {{package.totalPackages}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

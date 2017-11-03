@@ -1,0 +1,88 @@
+<!-- Content Header (Page header) -->
+<style>
+    .center-btn {
+        width: 150px;
+        margin: auto;
+    }
+</style>
+
+<toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+
+<section class="content-header">
+    <h1>{{category.title}} Category</h1>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="administrator.category"><i class="fa fa-dashboard"></i> Categories</a></li>
+        <li class="active">{{category.title}} Category</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{category.title}} Category</h3>
+                    <div class="box-tools pull-right">
+                        <a ui-sref="administrator.category" class="btn btn-sm btn-info btn-flat pull-left">Back to All Categories</a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <form class="form-horizontal" name="categoryForm" novalidate angular-validator
+                    angular-validator-submit='category.saveCategory()'>
+
+                    <div class="box-body">
+                        <input ng-if="category.editFlag" type="hidden" name="category_id" ng-model="category.categoryForm.categoryId">
+                        <input ng-if="category.editFlag" type="hidden" name="parent_id" ng-model="category.categoryForm.parentId">
+                        <!-- <div class="form-group">
+                            <label class="col-sm-2 control-label">Parent Category</label>
+                            <div class="col-sm-8">
+                                <div angucomplete-alt id="ex1" placeholder="Search category" selected-object="category.selectedParentCategory" local-data="category.parentCategories" search-fields="name" title-field="name" minlength="1" input-class="form-control form-control-small" match-class="highlight" override-suggestions="true"  initial-value="category.categoryForm.parentName">  
+                                </div>
+                            </div>
+                        </div> -->
+                    
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="name" ng-model="category.categoryForm.name" placeholder="Enter Category Name" validate-on='dirty' required="">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="description" ng-model="category.categoryForm.description" placeholder="Enter Category Description">
+                                </textarea> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="center-btn">
+                            <button type="submit" class="btn btn-success" ng-disabled="categoryForm.$invalid" placeholder="Enter category description">Submit</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
+                        </div>
+                    </div>
+
+                      <!-- <div class="floatleft">
+                        <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                          <li ng-repeat="item in list" class="item">
+                            {{item.text}}
+                          </li>
+                        </ul>
+                      </div> -->
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

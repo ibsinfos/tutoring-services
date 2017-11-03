@@ -1,0 +1,26 @@
+<main class="layout_table" ng-init="search.getUserSkills();">
+    <section class="find_projects layout_table_cell" ng-init="search.searchProjects();">
+        <h2 style="padding: 0 20px;">We found these projects for you</h2>
+        <div class="potential panel panel-default" ng-repeat="project in search.projects">
+            <div class="info">
+                <h4 class="title">{{project.project_name}}</h4>
+                <p class="employer">{{project.first_name}} {{project.last_name}}</p>
+                <p class="budget">{{project.currency_symbol}}{{project.range_from}} - {{project.currency_symbol}}{{project.range_to}}</p>
+                <p class="urgency">Start in <span ng-if="project.urgency>=7">{{project.urgency}} days</span><span ng-if="project.urgency<7">a week</span></p>
+                <div class="actions">
+                    <!-- <button class="btn btn-primary" ng-click="search.openBidModal(project);">Make a pitch</button> -->
+                    <a class="btn btn-primary" ui-sref="root.project({slug: project.project_slug})" target="_blank">Make a pitch</a>
+                </div>
+            </div>
+            <div class="skills">
+                <h4>Skillmatch</h4>
+                <div class="skillmatch">{{search.projectSkillsPercentage[project.project_id]}}%</div>
+                <div class="skillrequested" ng-init="search.customSplitString(project.skill_names, project.project_id);">
+                    <ul>
+                        <li ng-repeat="skill in search.projectSkills[project.project_id] track by $index">{{skill}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
